@@ -22,4 +22,13 @@ git commit -m 'deploy'
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:linxiaomu/neworld.git master:gh-pages
 
+git push -f git@gitee.com:xiaoliuya/neworld.git master:gh-pages
+
+cd D:/MyBlog-github/neworld
+
+# git push -f git@gitee.com:xiaoliuya/neworld.git master:master
+
+git push -u gitee master
+
 cd -
+

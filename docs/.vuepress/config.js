@@ -50,7 +50,7 @@ module.exports = {
         },
         // 最后更新时间
         lastUpdated: true,
-        lastUpdated: '最后更新时间', // string | boolean
+        lastUpdated: '上次更新', // string | boolean
         // 作者
         author: 'liuwenjie',
         // 备案号
@@ -74,6 +74,11 @@ module.exports = {
           verify: true, // 验证码
     		  recordIP: true
        	},
+    },
+    locales: {
+      '/': {
+        lang: 'zh-CN',
+      }
     },
 
   markdown: {

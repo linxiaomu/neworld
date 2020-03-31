@@ -37,9 +37,9 @@ isShowComments: true
 
 ### 参与社区
 
-- 博客：[https://zpj80231.gitee.io/znote](https://zpj80231.gitee.io/znote)
+- 博客：[https://linxiaomu.github.io/neworld/](https://linxiaomu.github.io/neworld/)
 
-- Github：[https://github.com/zpj80231](https://github.com/zpj80231)
+- Github：[https://github.com/linxiaomu/neworld](https://github.com/linxiaomu/neworld)
 
 ### 联系我
 
