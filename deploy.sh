@@ -27,6 +27,10 @@ git push -f git@gitee.com:xiaoliuya/neworld.git master:gh-pages
 cd D:/MyBlog-github/neworld
 
 # git push -f git@gitee.com:xiaoliuya/neworld.git master:master
+git add -A
+git commit -m 'deploy'
+
+git push -u github master
 
 git push -u gitee master
 
