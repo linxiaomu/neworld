@@ -89,10 +89,12 @@ module.exports = {
   },
 
   //插件配置
-  plugins: [
-    pluginConf,
-    require('./plugins/detailsOpenFlag/index'),
-    require('./plugins/musicPlayer/index')
-  ],
+  // plugins: [
+  //   pluginConf,
+  //   require('./plugins/detailsOpenFlag/index'),
+  //   require('./plugins/musicPlayer/index')
+  // ],
+  plugins: pluginConf
+  
 
 }  
