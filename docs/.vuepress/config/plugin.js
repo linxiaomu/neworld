@@ -1,6 +1,7 @@
 const secretKeyConf = require('../config/secretKeyConf.js')
 
 module.exports = {
+    '@vuepress-reco/vuepress-plugin-kan-ban-niang': true,
     '@vuepress/pwa':
     {
       serviceWorker: true,
@@ -23,4 +24,5 @@ module.exports = {
       after: '</details>',
       defaultTitle: '详细信息'
     },
+    
 };

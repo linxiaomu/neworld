@@ -1,21 +1,17 @@
 //导航栏
 module.exports = [
     { text: '主页', link: '/index.html', icon: 'reco-home' },
+    { 
+        text: '知识体系',  
+        icon: 'reco-category',
+        link: '/note/前端知识体系汇总.md',
+      },
     { text: '其它', icon: 'reco-document',
       items: [{
-          text: 'Projects🎈',
-          items: [{
-              text: 'My Project',
-              link: '/other/project',
-          }]
-      }, {
           text: 'Common sites🎈',
           items: [{
               text: 'Java SE API Documentation',
               link: 'https://docs.oracle.com/javase/8/docs/api/index.html',
-          }, {
-              text: 'Program Creek',
-              link: 'https://www.programcreek.com/',
           }, {
               text: 'Spring',
               link: 'https://spring.io/',

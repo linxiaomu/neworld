@@ -31,12 +31,14 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
       nav: nav,
-      // logo: '/vuepress/head-fish.jpg', //导航栏头像
+      //导航栏头像
+      // logo: '/vuepress/head-fish.jpg',
       authorAvatar: '/vuepress/head-fish.jpg', //首页右侧头像
       // 搜索设置
       search: true,
       searchMaxSuggestions: 10,
-      // sidebar: 'auto',// 自动形成侧边导航
+      // 自动形成侧边导航
+      // sidebar: 'auto',
       sidebar: sidebar,
       sidebarDepth: 2,
       blogConfig: {

@@ -1,6 +1,7 @@
 ---
 title: "Q&A宝典-试炼篇"
 date: 2019-01-31
+collapsable: true
 tags:
 - 复习
 categories:

@@ -3,14 +3,13 @@ module.exports = {
     '/views/': [
         '',
         {
-            title:'知识晶体 Q&A',
+            title:'知识体系 Power',
             collapsable: true,
             children: [
-                'qaq/sum_ms_001',
-                'qaq/sum_fe_001','qaq/sum_fe_002',
-                'qaq/sum_java_001','qaq/sum_java_002',
-                'qaq/sum_db_001',
-                'qaq/sum_spring_001','qaq/sum_spring_002','qaq/sum_spring_003'
+                'power/ceshi',
+                'power/sum_ms_001',
+                'power/sum_fe_001','power/sum_fe_002',
+                'power/sum_java_001','power/sum_java_002'
             ]
         },
         {
@@ -24,25 +23,22 @@ module.exports = {
             title:'前端 Front-end',
             collapsable: true,
             children:[
-                'front-end/EChartsStudy','front-end/js-json','front-end/viaStart','front-end/vue-demo',
-                'front-end/reco-info', 'front-end/vuepress-plugin-boxx','front-end/TCP&UDP'
+                'front-end/js-json',
+                'front-end/reco-info', 'front-end/vuepress-plugin-boxx'
             ]
         },
         {
             title:'后端 Back-end',
             collapsable: true,
             children:[
-                'java/ArrayList','java/docker','java/HashMap','java/itext','java/poi','java/quartz',
-                'java/rabbitmq', 'java/redis01', 'java/redis02', 'java/SSH', 'java/jwt', 'java/swagger2', 'java/thread',
-                'java/jvm','java/annotationLog','java/ThreadPool','java/JUC'
+                
             ]
         },
         {
             title:'随笔 Essay',
             collapsable: true,
             children:[
-                'essay/20190928','essay/20191109','essay/20191116','essay/20191130','essay/20200227',
-                'essay/20200301'
+                'essay/20190928'
             ]
         }
 
