@@ -35,6 +35,13 @@ module.exports = {
             ]
         },
         {
+            title:'收藏空间 note',
+            collapsable: true,
+            children:[
+                'note/前端知识体系汇总'
+            ]
+        },
+        {
             title:'随笔 Essay',
             collapsable: true,
             children:[

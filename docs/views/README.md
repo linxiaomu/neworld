@@ -6,169 +6,34 @@ sidebarDepth: 0
 isShowComments: true
 ---
 
+
 <div style="height: 120px">
 	<Boxx :changeTime='changeTime' />
 </div>
 
-![](/znote/love/比心.png)
+::: tip
+这是一个提示：上面刷新就会改变呦~
+:::
+<br/>
 
-<div id='category'>
+::: theorem 骚动
+老了，骚不动了，现在我对时尚的理解是：保暖为主。<br/><br/>
+十多岁的年纪，有人脱了单，有人脱了贫，<br/>
+而我却脱了缰，像只哈士奇一样，在二逼的道路上狂奔。<br/><br/>
+世界上最危险的事莫过于把闹钟关掉后又闭上了眼睛。<br/>
+这是目前人类唯一可实行的穿越方法，闭眼5秒钟就能抵达2个小时后的未来。<br/><br/>
+台风来了，请大家关好门窗，万一我被吹到你家里去，我是不会走的。<br/><br/>
+听成绩时一定要用右耳，因为左耳靠近心脏，可能会猝死。<br/><br/>
+像我们这个年纪，开电动车一定要戴安全头盔。否则会被开宝马奔驰的同学认出来。<br/><br/>
+如果你长期找不到对象，那就要反思一下，是不是自己对性别的要求太高了？<br/><br/>
+什么叫成熟，你妈没逼你，你就穿上秋裤了。什么叫青春，你妈逼着你，你还是不穿秋裤。<br/><br/>
+养了一条鱼死了，不想土葬，我想火葬，谁知道这玩意越烤越香，然后我买了瓶啤酒！<br/><br/>
+看了网上很多熬夜的坏处，这些对我最大的改变就是从开开心心的熬夜变成了提心吊胆的熬夜。<br/><br/>
+如果你主动一点，我们不光会有故事，还会有孩子。<br/><br/>
+可以触摸的痛苦是什么？就是我觉得肚子都饿扁了，一摸还是有一坨肉。<br/><br/>
 
-[【分类】](/categories/后端/)
 
-</div>
-
-<div id='tag'>
-
-[【标签】](/tag/)
-
-</div>
-
-<div id='fj'>
-
-[【前端】](/views/front-end/js-json.html) | [【后端】](/views/java/ArrayList.html)
-
-</div>
-
-<div id='se'>
-
- [【规范】](/views/specification/ali.html) | [【随笔】](/views/essay/20191109.html)
-
-</div>
-
-<script>
-	export default {
-		data() {
-			return {
-                changeTime: '2000',
-                index: 2,
-			}
-		},
-		mounted() {
-			this.updateTime(this.changeTime);
-		},
-		methods: {
-			updateTime(time) {
-				setInterval(() => {
-			      if (this.index%2 == 0) {
-			      	this.changeTime = '300'
-			      }
-			      if (this.index%2 != 0) {
-			      	this.changeTime = time
-			      }
-			      this.index++;
-			    }, 6000)
-			}
-		}
-
-	}
-</script>
-
-<style lang='stylus' scoped> 
-	.content__default:not(.custom) img {
-	    max-width: 20% !important;
-	    margin-top: -10px;
-	    //padding-left: 26%;
-	}
-	#category {
-		width:100px;
-		height:100px;
-		float: right;
-		background:#ffff0059;
-		transition:width 2s;
-		-moz-transition:width 2s; /* Firefox 4 */
-		-webkit-transition:width 2s; /* Safari and Chrome */
-		-o-transition:width 2s; /* Opera */
-	}
-
-	#category:hover {
-		width:300px;
-	}
-	
-	#tag {
-		width:100px;
-		height:100px;
-		float: right;
-		background:#ffff0059;
-		transition:width 2s, height 2s;
-		-moz-transition:width 2s, height 2s, -moz-transform 2s; /* Firefox 4 */
-		-webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* Safari and Chrome */
-		-o-transition:width 2s, height 2s, -o-transform 2s; /* Opera */
-	}
-	
-	#tag:hover {
-		width:100px;
-		height:100px;
-		transform:rotate(360deg);
-		-moz-transform:rotate(360deg); /* Firefox 4 */
-		-webkit-transform:rotate(360deg); /* Safari and Chrome */
-		-o-transform:rotate(360deg	); /* Opera */
-	}
-	
-	#category p,#tag p {
-		    margin: 0;
-		    padding-top: 35px;
-		    padding-left: 15px;
-		    /*padding-right: 15px;*/
-		    font-size: 16px;
-	}
-	
-	#fj,#se {
-		margin-top: 27px;
-	}
-	
-	@media screen and (max-width: 960px){
-		.content__default:not(.custom) img {
-		    max-width: 35% !important;
-		    margin: 17px;
-		    padding-left: 26%;
-		}
-		#fj {
-			font-size: 14px;
-			margin-top: 28px;
-		}
-		#se {
-			font-size: 14px;
-		}
-		#category {
-			width:100px;
-			height:100px;
-			float: right;
-			background:#ffff0059;
-			transition:width 2s, height 2s;
-			-moz-transition:width 2s, height 2s, -moz-transform 2s; /* Firefox 4 */
-			-webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* Safari and Chrome */
-			-o-transition:width 2s, height 2s, -o-transform 2s; /* Opera */
-		}
-		#category:hover {
-			width:100px;
-			height:100px;
-			transform:rotate(360deg);
-			-moz-transform:rotate(360deg); /* Firefox 4 */
-			-webkit-transform:rotate(360deg); /* Safari and Chrome */
-			-o-transform:rotate(360deg	); /* Opera */
-		}
-	}
-	
-	@media screen and (max-width: 360px){
-		#fj {
-			font-size: 12px;
-			margin-top: 28px;
-		}
-		#se {
-			font-size: 12px;
-		}
-	}
-	@media screen and (max-width: 320px){
-		#fj {
-			font-size: 12px;
-			margin-top: 26px;
-		}
-		#se {
-			font-size: 12px;
-			margin-top: -10px;
-		}
-	}
-</style>
-
+::: right
+From 达拉崩巴班得贝迪卜多比鲁翁
+:::
 
