@@ -1,5 +1,5 @@
 ---
-title: "Q&A宝典-前端基础篇ceshi"
+title: "宝典-前端基础篇ceshi"
 date: 2020-03-30
 sidebarDepth: 1
 collapsable: true

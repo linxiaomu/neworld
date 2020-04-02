@@ -1,5 +1,5 @@
 ---
-title: "Q&A宝典-Java进阶篇"
+title: "宝典-Java进阶篇"
 date: 2019-04-15
 tags:
 - 复习

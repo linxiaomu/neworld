@@ -1,5 +1,5 @@
 ---
-title: "Q&A宝典-Java基础篇"
+title: "宝典-Java基础篇"
 date: 2019-02-17
 tags:
 - 复习

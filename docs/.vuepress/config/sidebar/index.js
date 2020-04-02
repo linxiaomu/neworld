@@ -24,7 +24,9 @@ module.exports = {
             collapsable: true,
             children:[
                 'front-end/js-json',
-                'front-end/reco-info', 'front-end/vuepress-plugin-boxx'
+                'front-end/reco-info', 'front-end/vuepress-plugin-boxx',
+                'front-end/pushToGithubAndGitee','front-end/powerShell_yarn',
+                'front-end/vuepress','front-end/CLI命令'
             ]
         },
         {
