@@ -34,7 +34,7 @@ module.exports = {
             title:'后端 Back-end',
             collapsable: true,
             children:[
-                
+                'java/python'
             ]
         },
         {
