@@ -26,7 +26,8 @@ module.exports = {
                 'front-end/js-json',
                 'front-end/reco-info', 'front-end/vuepress-plugin-boxx',
                 'front-end/pushToGithubAndGitee','front-end/powerShell_yarn',
-                'front-end/vuepress','front-end/CLI命令'
+                'front-end/vuepress','front-end/CLI命令',
+                'paper/IDEA快捷键','paper/网页问题','paper/完全卸载MySQL'
             ]
         },
         {
@@ -37,10 +38,10 @@ module.exports = {
             ]
         },
         {
-            title:'收藏空间 note',
+            title:'收藏空间 interLink',
             collapsable: true,
             children:[
-                'note/前端知识体系汇总'
+                'interLink/前端知识体系汇总'
             ]
         },
         {

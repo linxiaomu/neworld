@@ -4,7 +4,7 @@ module.exports = [
     { 
         text: '收藏空间',  
         icon: 'reco-other',
-        link: '/views/note/前端知识体系汇总.md',
+        link: '/views/interLink/前端知识体系汇总.md',
       },
     { text: '时间线', link: '/timeLine/', icon: 'reco-date' },
     { text: '关于我', link: '/about/',icon: 'reco-message'}
