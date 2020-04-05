@@ -114,3 +114,102 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ~~6、传统方式：pojo-dao(连接mybatis，配饰mapper.xml文件)-service-controller~~
 
 6、使用mybatisplus之后，
+
+- pojo
+
+  ~~~java
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public class User {
+      private Integer id;
+      private String name;
+      private Integer age;
+      private String email;
+  }
+  ~~~
+
+- mapper
+
+  ~~~java
+  package com.xiaoliuya.mybatis_plus.mapper;
+  
+  import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+  import com.xiaoliuya.mybatis_plus.pojo.User;
+  import org.springframework.stereotype.Repository;
+  
+  //在对应的Mapper上继承接本的接口 BaseMapper
+  @Repository //代表持久层,使用之后自动装配不会显示错误，不使用也可
+  public interface UserMapper extends BaseMapper<User> {
+      //所有的CRUD操作已经编写完成了
+      //你不需要像以前一样配置一大堆文件了
+  }
+  
+  ~~~
+
+  注意：我们需要在主启动类上去扫描我们的mapper包下的所有接口
+
+  ~~~java
+  //扫描我们的mapper文件夹
+  @MapperScan("com.xiaoliuya.mybatis_plus.mapper")
+  @SpringBootApplication
+  public class MybatisPlusApplication {
+  
+      public static void main(String[] args) {
+          SpringApplication.run(MybatisPlusApplication.class, args);
+      }
+  
+  }
+  ~~~
+
+- 测试类中测试
+
+  ~~~java
+  @SpringBootTest
+  class MybatisPlusApplicationTests {
+  
+      @Autowired
+      UserMapper userMapper;
+      @Test
+      void contextLoads() {
+          //参数是一个Wrapper，条件构造器，这里我们先不用null
+          //查询全部用户
+          List<User> users = userMapper.selectList(null);
+          users.forEach(System.out::println);
+      }
+  
+  }
+  ~~~
+
+- 结果
+
+  <img src="./images/mybatisplus6.png" style="zoom:60%;float:left" />
+
+  通过以上几个简单的步骤，我们就实现了 User 表的 CRUD 功能，甚至连 XML 文件都不用编写！
+
+  从以上步骤中，我们可以看到集成`MyBatis-Plus`非常的简单，只需要引入 starter 工程，并配置 mapper 扫描路径即可。
+
+  但 MyBatis-Plus 的强大远不止这些功能，想要详细了解 MyBatis-Plus 的强大功能？那就继续往下看吧！
+
+> 思考问题
+
+1、SQL谁帮我们写的？MyBatis-Plus
+
+2、方法哪里来的？MyBatis-Plus
+
+## 配置日志
+
+我们所有的sql现在是不可见的，我们希望知道它是怎么执行的，所以我们必须要看日志。
+
+~~~properties
+#配置日志
+#这是控制台输出
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+~~~
+
+![](images/mybatisplus7.png)
+
+---
+
+## CRUD扩展
+
