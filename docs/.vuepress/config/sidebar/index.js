@@ -47,7 +47,8 @@ module.exports = {
             title:'一张纸',// paper
             collapsable: true,
             children:[
-                'paper/IDEA快捷键','paper/网页问题','paper/完全卸载MySQL'
+                'paper/IDEA快捷键','paper/网页问题','paper/完全卸载MySQL',
+                'paper/虚拟机安装CentOS7镜像'
             ]
         },
         {

@@ -207,7 +207,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 ~~~
 
-![](images/mybatisplus7.png)
+![](./images/mybatisplus7.png)
 
 ---
 
