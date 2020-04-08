@@ -33,7 +33,8 @@ module.exports = {
             title:'后端开发',// Back-end
             collapsable: true,
             children:[
-                'java/python','java/MyBatisPlus'
+                'java/python','java/MyBatisPlus',
+                'java/Linux'
             ]
         },
         {
