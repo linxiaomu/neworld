@@ -49,7 +49,7 @@ module.exports = {
             collapsable: true,
             children:[
                 'paper/IDEA快捷键','paper/网页问题','paper/完全卸载MySQL',
-                'paper/虚拟机安装CentOS7镜像'
+                'paper/虚拟机安装CentOS7镜像','paper/修改GitHub登录缓慢和头像不显示问题'
             ]
         },
         {

@@ -1,3 +1,14 @@
+---
+title: 修改GitHub登录缓慢和头像不显示问题
+date: 2020-04-10
+sidebarDepth: 1
+tags:
+- GitHub
+categories:
+- '前端'
+isShowComments: false
+---
+
 登录GitHub时，会出现登录缓慢和登录上头像不显示的问题。
 
 解决方法，打开路径C:\Windows\System32\drivers\etc下的hosts文件
