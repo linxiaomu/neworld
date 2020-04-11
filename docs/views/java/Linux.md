@@ -1274,3 +1274,690 @@ usermod 选项 用户名
 - #表示超级用户，也就是root用户
 
 ![](./images/linux17.png)
+
+**5、修改密码（用户口令的管理）**
+
+用户管理的一项重要内容是用户口令的管理。用户账号刚创建时没有口令，但是被系统锁定，无法使用，必须为其指定口令后才可以使用，即使是指定空口令。
+
+指定和修改用户口令的Shell命令是`passwd`。超级用户可以为自己和其他用户指定口令，普通用户只能用它修改自己的口令。命令的格式为：
+
+```shell
+passwd 选项 用户名
+```
+
+可使用的选项：
+
+- -l 锁定口令，即禁用账号。
+- -u 口令解锁。
+- -d 使账号无口令。
+- -f 强迫用户下次登录时修改口令。
+
+如果默认用户名，则修改当前用户的口令。
+
+例如，假设当前用户是sam，则下面的命令修改该用户自己的口令：
+
+```shell
+$ passwd 
+Old password:****** 
+New password:******* 
+Re-enter new password:*******
+```
+
+如果是超级用户，可以用下列形式指定任何用户的口令：
+
+```shell
+# passwd sam 
+New password:******* 
+Re-enter new password:*******
+```
+
+普通用户修改自己的口令时，passwd命令会先询问原口令，验证后再要求用户输入两遍新口令，如果两次输入的口令一致，则将这个口令指定给用户；而超级用户为用户指定口令时，就不需要知道原口令。
+
+为了系统安全起见，用户应该选择比较复杂的口令，例如最好使用8位长的口令，口令中包含有大写、小写字母和数字，并且应该与姓名、生日等不相同。
+
+为用户指定空口令时，执行下列形式的命令：
+
+```shell
+# passwd -d sam
+```
+
+此命令将用户 sam 的口令删除，这样用户 sam 下一次登录时，系统就不再允许该用户登录了。
+
+passwd 命令**还**可以用 -l(lock) 选项锁定某一用户，使其不能登录，例如：
+
+```shell
+# passwd -l sam
+```
+
+---
+
+### Linux系统用户组的管理
+
+每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。
+
+用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。
+
+ **1、增加一个新的用户组使用groupadd命令。其格式如下：**
+
+```shell
+groupadd 选项 用户组
+```
+
+可以使用的选项有：
+
+- -g GID 指定新用户组的组标识号（GID）。
+- -o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。
+
+> 例1：此命令向系统中增加一个新组group1，新组的组标识号是在当前已有的最大组标识号的基础上加1。
+
+```shell
+# groupadd group1
+```
+
+> 例2：此命令向系统中增加了一个新组group2，同时指定新组的组标识号是101。
+
+```shell
+# groupadd -g 101 group2
+```
+
+**2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下：**
+
+```shell
+groupdel 用户组
+```
+
+> 例：从系统中删除组group1。
+
+```shell
+# groupdel group1
+```
+
+**3、修改用户组的属性使用groupmod命令。其语法如下：**
+
+```shell
+groupmod 选项 用户组
+```
+
+常用的选项有：
+
+- -g GID 为用户组指定新的组标识号。
+- -o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。
+- -n新用户组 将用户组的名字改为新名字
+
+> 例1：此命令将组group2的组标识号修改为102。
+
+```shell
+# groupmod -g 102 group2
+```
+
+> 例2：此命令将组group2的标识号改为10000，组名修改为group3。
+
+```shell
+# groupmod –g 10000 -n group3 group2
+```
+
+**4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。**
+
+用户可以在登录后，使用命令newgrp切换到其他用户组，这个命令的参数就是目的用户组。例如：
+
+```shell
+$ newgrp root
+```
+
+这条命令将当前用户切换到root用户组，前提条件是root用户组确实是该用户的主组或附加组。类似于用户账号的管理，用户组的管理也可以通过集成的系统管理工具来完成。
+
+---
+
+### 与用户账号有关的系统文件
+
+完成用户管理的工作有许多种方法，但是每一种方法实际上都是对有关的系统文件进行修改。
+
+与用户和用户组相关的信息都存放在一些系统文件中，这些文件包括**/etc/passwd, /etc/shadow, /etc/group**等。
+
+下面分别介绍这些文件的内容。
+
+#### **1、/etc/passwd文件是用户管理工作涉及的最重要的一个文件**
+
+Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录行，它记录了这个用户的一些基本属性。
+
+这个文件对所有用户都是可读的。它的内容类似下面的例子：
+
+~~~shell
+[root@xiaoliuya /]# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:999:998:User for polkitd:/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:998:996::/var/lib/chrony:/sbin/nologin
+nscd:x:28:28:NSCD Daemon:/:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ntp:x:38:38::/etc/ntp:/sbin/nologin
+www:x:1000:1000::/home/www:/sbin/nologin
+~~~
+
+从上面的例子我们可以看到，/etc/passwd中一行记录对应着一个用户，每行记录又被冒号(:)分隔为7个字段，其格式和具体含义如下：
+
+```shell
+用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell
+```
+
+**1."用户名"是代表用户账号的字符串。**
+
+通常长度不超过8个字符，并且由大小写字母和/或数字组成。登录名中不能有冒号(:)，因为冒号在这里是分隔符。
+
+为了兼容起见，登录名中最好不要包含点字符(.)，并且不使用连字符(-)和加号(+)打头。
+
+**2.“口令”一些系统中，存放着加密后的用户口令字。**
+
+虽然这个字段存放的只是用户口令的加密串，不是明文，但是由于/etc/passwd文件对所有用户都可读，所以这仍是一个安全隐患。因此，现在许多Linux 系统（如SVR4）都使用了shadow技术，**把真正的加密后的用户口令字存放到/etc/shadow文件中**，而在/etc/passwd文件的口令字段中只存放一个特殊的字符，例如“x”或者“*”。
+
+**3.“用户标识号”是一个整数，系统内部用它来标识用户。**
+
+一般情况下它与用户名是一一对应的。如果几个用户名对应的用户标识号是一样的，系统内部将把它们视为同一个用户，但是它们可以有不同的口令、不同的主目录以及不同的登录Shell等。
+
+通常用户标识号的取值范围是0～65 535。0是超级用户root的标识号，1～99由系统保留，作为管理账号，普通用户的标识号从100开始。在Linux系统中，这个界限是500。
+
+**4.“组标识号”字段记录的是用户所属的用户组。**
+
+它对应着/etc/group文件中的一条记录。
+
+**5.“注释性描述”字段记录着用户的一些个人情况。**
+
+例如用户的真实姓名、电话、地址等，这个字段并没有什么实际的用途。在不同的Linux 系统中，这个字段的格式并没有统一。在许多Linux系统中，这个字段存放的是一段任意的注释性描述文字，用做finger命令的输出。
+
+**6.“主目录”，也就是用户的起始工作目录。**
+
+它是用户在登录到系统之后所处的目录。在大多数系统中，各用户的主目录都被组织在同一个特定的目录下，而用户主目录的名称就是该用户的登录名。各用户对自己的主目录有读、写、执行（搜索）权限，其他用户对此目录的访问权限则根据具体情况设置。
+
+**7.用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。**
+
+Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种都有不同的特点。常用的有sh(Bourne Shell), csh(C Shell), ksh(Korn Shell), tcsh(TENEX/TOPS-20 type C Shell), bash(Bourne Again Shell)等。
+
+系统管理员可以根据系统情况和用户习惯为用户指定某个Shell。如果不指定Shell，那么系统使用sh为默认的登录Shell，即这个字段的值为/bin/sh。
+
+用户的登录Shell也可以指定为某个特定的程序（此程序不是一个命令解释器）。
+
+利用这一特点，我们可以限制用户只能运行指定的应用程序，在该应用程序运行结束后，用户就自动退出了系统。有些Linux 系统要求只有那些在系统中登记了的程序才能出现在这个字段中。
+
+**8.系统中有一类用户称为伪用户（pseudo users）**
+
+这些用户在/etc/passwd文件中也占有一条记录，但是不能登录，因为它们的登录Shell为空。它们的存在主要是方便系统管理，满足相应的系统进程对文件属主的要求。
+
+常见的伪用户如下所示：
+
+```shell
+伪 用 户 含 义 
+bin 拥有可执行的用户命令文件 
+sys 拥有系统文件 
+adm 拥有帐户文件 
+uucp UUCP使用 
+lp lp或lpd子系统使用 
+nobody NFS使用
+```
+
+#### 2、/etc/shadow文件存放加密后的口令
+
+**1、除了上面列出的伪用户外，还有许多标准的伪用户，例如：audit, cron, mail, usenet等，它们也都各自为相关的进程和文件所需要。**
+
+由于/etc/passwd文件是所有用户都可读的，如果用户的密码太简单或规律比较明显的话，一台普通的计算机就能够很容易地将它破解，因此对安全性要求较高的Linux系统都把加密后的口令字分离出来，单独存放在一个文件中，这个文件是/etc/shadow文件。 有超级用户才拥有该文件读权限，这就保证了用户密码的安全性。
+
+**2、/etc/shadow中的记录行与/etc/passwd中的一一对应，它由pwconv命令根据/etc/passwd中的数据自动产生**
+
+它的文件格式与/etc/passwd类似，由若干个字段组成，字段之间用":"隔开。这些字段是：
+
+```
+登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志
+```
+
+1. "登录名"是与/etc/passwd文件中的登录名相一致的用户账号
+2. "口令"字段存放的是加密后的用户口令字，长度为13个字符。如果为空，则对应用户没有口令，登录时不需要口令；如果含有不属于集合 { ./0-9A-Za-z }中的字符，则对应的用户不能登录。
+3. "最后一次修改时间"表示的是从某个时刻起，到用户最后一次修改口令时的天数。时间起点对不同的系统可能不一样。例如在SCO Linux 中，这个时间起点是1970年1月1日。
+4. "最小时间间隔"指的是两次修改口令之间所需的最小天数。
+5. "最大时间间隔"指的是口令保持有效的最大天数。
+6. "警告时间"字段表示的是从系统开始警告用户到用户密码正式失效之间的天数。
+7. "不活动时间"表示的是用户没有登录活动但账号仍能保持有效的最大天数。
+8. "失效时间"字段给出的是一个绝对的天数，如果使用了这个字段，那么就给出相应账号的生存期。期满后，该账号就不再是一个合法的账号，也就不能再用来登录了。
+
+下面是/etc/shadow的一个例子：
+
+```shell
+＃ cat /etc/shadow
+
+root:Dnakfw28zf38w:8764:0:168:7:::
+daemon:*::0:0::::
+bin:*::0:0::::
+sys:*::0:0::::
+adm:*::0:0::::
+uucp:*::0:0::::
+nuucp:*::0:0::::
+auth:*::0:0::::
+cron:*::0:0::::
+listen:*::0:0::::
+lp:*::0:0::::
+sam:EkdiSECLWPdSa:9740:0:0::::
+```
+
+#### 3、用户组的所有信息都存放在/etc/group文件中
+
+将用户分组是Linux 系统中对用户进行管理及控制访问权限的一种手段。
+
+每个用户都属于某个用户组；一个组中可以有多个用户，一个用户也可以属于不同的组。
+
+当一个用户同时是多个组中的成员时，在/etc/passwd文件中记录的是用户所属的主组，也就是登录时所属的默认组，而其他组称为附加组。
+
+用户要访问属于附加组的文件时，必须首先使用newgrp命令使自己成为所要访问的组中的成员。
+
+用户组的所有信息都存放在/etc/group文件中。此文件的格式也类似于/etc/passwd文件，由冒号(:)隔开若干个字段，这些字段有：
+
+```shell
+组名:口令:组标识号:组内用户列表
+```
+
+1. "组名"是用户组的名称，由字母或数字构成。与/etc/passwd中的登录名一样，组名不应重复。
+2. "口令"字段存放的是用户组加密后的口令字。一般Linux 系统的用户组都没有口令，即这个字段一般为空，或者是*。
+3. "组标识号"与用户标识号类似，也是一个整数，被系统内部用来标识组。
+4. "组内用户列表"是属于这个组的所有用户的列表/b]，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。
+
+/etc/group文件的一个例子如下：
+
+```shell
+root::0:root
+bin::2:root,bin
+sys::3:root,uucp
+adm::4:root,adm
+daemon::5:root,daemon
+lp::7:root,lp
+users::20:root,sam
+```
+
+---
+
+## 磁盘管理
+
+Linux磁盘管理好坏直接关系到整个系统的性能问题。
+
+Linux磁盘管理常用三个命令为df、du和fdisk。
+
+- df：列出文件系统的整体磁盘使用量
+- du：检查磁盘空间使用量
+- fdisk：用于磁盘分区
+
+---
+
+### **df**
+
+df命令参数功能：检查文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。
+
+语法：
+
+```
+df [-ahikHTm] [目录或文件名]
+```
+
+选项与参数：
+
+- -a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；
+- -k ：以 KBytes 的容量显示各文件系统；
+- -m ：以 MBytes 的容量显示各文件系统；
+- -h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；
+- -H ：以 M=1000K 取代 M=1024K 的进位方式；
+- -T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；
+- -i ：不用硬盘容量，而以 inode 的数量来显示
+
+>例 1：将系统内所有的文件系统列出来！
+
+```
+[root@www ~]# df
+Filesystem      1K-blocks      Used Available Use% Mounted on
+/dev/hdc2         9920624   3823112   5585444  41% /
+/dev/hdc3         4956316    141376   4559108   4% /home
+/dev/hdc1          101086     11126     84741  12% /boot
+tmpfs              371332         0    371332   0% /dev/shm
+```
+
+在 Linux 底下如果 df 没有加任何选项，那么默认会将系统内所有的 (不含特殊内存内的文件系统与 swap) 都以 1 Kbytes 的容量来列出来！
+
+> 例 2：将容量结果以易读的容量格式显示出来
+
+```
+[root@www ~]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdc2             9.5G  3.7G  5.4G  41% /
+/dev/hdc3             4.8G  139M  4.4G   4% /home
+/dev/hdc1              99M   11M   83M  12% /boot
+tmpfs                 363M     0  363M   0% /dev/shm
+```
+
+> 例 3：将系统内的所有特殊文件格式及名称都列出来
+
+```
+[root@www ~]# df -aT
+Filesystem    Type 1K-blocks    Used Available Use% Mounted on
+/dev/hdc2     ext3   9920624 3823112   5585444  41% /
+proc          proc         0       0         0   -  /proc
+sysfs        sysfs         0       0         0   -  /sys
+devpts      devpts         0       0         0   -  /dev/pts
+/dev/hdc3     ext3   4956316  141376   4559108   4% /home
+/dev/hdc1     ext3    101086   11126     84741  12% /boot
+tmpfs        tmpfs    371332       0    371332   0% /dev/shm
+none   binfmt_misc         0       0         0   -  /proc/sys/fs/binfmt_misc
+sunrpc  rpc_pipefs         0       0         0   -  /var/lib/nfs/rpc_pipefs
+```
+
+> 例 4：将 /etc 底下的可用的磁盘容量以易读的容量格式显示
+
+```
+[root@www ~]# df -h /etc
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdc2             9.5G  3.7G  5.4G  41% /
+```
+
+---
+
+### du
+
+Linux du命令也是查看使用空间的，但是与df命令不同的是Linux du命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的，这里介绍Linux du命令。
+
+语法：
+
+```
+du [-ahskm] 文件或目录名称
+```
+
+选项与参数：
+
+- -a ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。
+- -h ：以人们较易读的容量格式 (G/M) 显示；
+- -s ：列出总量而已，而不列出每个各别的目录占用容量；
+- -S ：不包括子目录下的总计，与 -s 有点差别。
+- -k ：以 KBytes 列出容量显示；
+- -m ：以 MBytes 列出容量显示；
+
+> 例 1：只列出当前目录下的所有文件夹容量（包括隐藏文件夹）:
+
+```
+[root@www ~]# du
+8       ./test4     <==每个目录都会列出来
+8       ./test2
+....中间省略....
+12      ./.gconfd   <==包括隐藏文件的目录
+220     .           <==这个目录(.)所占用的总量
+```
+
+直接输入 du 没有加任何选项时，则 du 会分析当前所在目录的文件与目录所占用的硬盘空间。
+
+> 例 2：将文件的容量也列出来
+
+```
+[root@www ~]# du -a
+12      ./install.log.syslog   <==有文件的列表了
+8       ./.bash_logout
+8       ./test4
+8       ./test2
+....中间省略....
+12      ./.gconfd
+220     .
+```
+
+> 例 3：检查根目录底下每个目录所占用的容量
+
+```
+[root@www ~]# du -sm /*
+7       /bin
+6       /boot
+.....中间省略....
+0       /proc
+.....中间省略....
+1       /tmp
+3859    /usr     <==系统初期最大就是他了啦！
+77      /var
+```
+
+通配符 * 来代表每个目录。
+
+与 df 不一样的是，du 这个命令其实会直接到文件系统内去搜寻所有的文件数据。
+
+---
+
+### fdisk
+
+fdisk 是 Linux 的磁盘分区表操作工具。
+
+语法：
+
+```
+fdisk [-l] 装置名称
+```
+
+选项与参数：
+
+- -l ：输出后面接的装置所有的分区内容。若仅有 fdisk -l 时， 则系统将会把整个系统内能够搜寻到的装置的分区均列出来。
+
+> 例 1：列出所有分区信息
+
+```
+[root@AY120919111755c246621 tmp]# fdisk -l
+
+Disk /dev/xvda: 21.5 GB, 21474836480 bytes
+255 heads, 63 sectors/track, 2610 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+    Device Boot      Start         End      Blocks   Id  System
+/dev/xvda1   *           1        2550    20480000   83  Linux
+/dev/xvda2            2550        2611      490496   82  Linux swap / Solaris
+
+Disk /dev/xvdb: 21.5 GB, 21474836480 bytes
+255 heads, 63 sectors/track, 2610 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x56f40944
+
+    Device Boot      Start         End      Blocks   Id  System
+/dev/xvdb2               1        2610    20964793+  83  Linux
+```
+
+> 例 2：找出你系统中的根目录所在磁盘，并查阅该硬盘内的相关信息
+
+```
+[root@www ~]# df /            <==注意：重点在找出磁盘文件名而已
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/hdc2              9920624   3823168   5585388  41% /
+
+[root@www ~]# fdisk /dev/hdc  <==仔细看，不要加上数字喔！
+The number of cylinders for this disk is set to 5005.
+There is nothing wrong with that, but this is larger than 1024,
+and could in certain setups cause problems with:
+1) software that runs at boot time (e.g., old versions of LILO)
+2) booting and partitioning software from other OSs
+   (e.g., DOS FDISK, OS/2 FDISK)
+
+Command (m for help):     <==等待你的输入！
+```
+
+输入 m 后，就会看到底下这些命令介绍
+
+```
+Command (m for help): m   <== 输入 m 后，就会看到底下这些命令介绍
+Command action
+   a   toggle a bootable flag
+   b   edit bsd disklabel
+   c   toggle the dos compatibility flag
+   d   delete a partition            <==删除一个partition
+   l   list known partition types
+   m   print this menu
+   n   add a new partition           <==新增一个partition
+   o   create a new empty DOS partition table
+   p   print the partition table     <==在屏幕上显示分割表
+   q   quit without saving changes   <==不储存离开fdisk程序
+   s   create a new empty Sun disklabel
+   t   change a partition's system id
+   u   change display/entry units
+   v   verify the partition table
+   w   write table to disk and exit  <==将刚刚的动作写入分割表
+   x   extra functionality (experts only)
+```
+
+离开 fdisk 时按下 `q`，那么所有的动作都不会生效！相反的， 按下`w`就是动作生效的意思。
+
+```
+Command (m for help): p  <== 这里可以输出目前磁盘的状态
+
+Disk /dev/hdc: 41.1 GB, 41174138880 bytes        <==这个磁盘的文件名与容量
+255 heads, 63 sectors/track, 5005 cylinders      <==磁头、扇区与磁柱大小
+Units = cylinders of 16065 * 512 = 8225280 bytes <==每个磁柱的大小
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/hdc1   *           1          13      104391   83  Linux
+/dev/hdc2              14        1288    10241437+  83  Linux
+/dev/hdc3            1289        1925     5116702+  83  Linux
+/dev/hdc4            1926        5005    24740100    5  Extended
+/dev/hdc5            1926        2052     1020096   82  Linux swap / Solaris
+# 装置文件名 启动区否 开始磁柱    结束磁柱  1K大小容量 磁盘分区槽内的系统
+
+Command (m for help): q
+```
+
+想要不储存离开吗？按下 q 就对了！不要随便按 w 啊！
+
+使用 `p` 可以列出目前这颗磁盘的分割表信息，这个信息的上半部在显示整体磁盘的状态。
+
+---
+
+## 进程管理
+
+> 基本概念
+
+1、在Linux中，每一个程序都有自己的一个进程，每个进程都有一个id号。
+
+2、每一个进程，都会有一个父进程。
+
+3、进程可以有两种存在方式：前台、后台运行。
+
+> 命令
+
+**ps** 查看当前系统中正在进行的各种进程的信息！
+
+**语法**
+
+```shell
+ps [options] [--help]
+```
+
+**参数：**
+
+- -A 列出所有的行程
+- -a   显示当前终端运行的所有的进程信息
+- -u   以用户的信息显示进程
+- -x   显示后台运行进程的参数
+- -au 显示较详细的资讯
+- -aux 显示所有包含其他使用者的行程
+
+~~~shell
+# ps -aux 查看所有进程
+ps -aux|grep mysql
+
+# |  在Linux这个叫做管道符    A|B
+# grep 查找文件中符合条件的字符串！
+~~~
+
+~~~shell
+ps -ef|grep mysql #可以查看父进程的信息
+
+pstree -pu
+	-p 显示父id
+	-u 显示用户组
+~~~
+
+~~~shell 
+kill -9 进程的id #表示强制结束该进程
+~~~
+
+## 环境安装
+
+安装软件一般有三种方式：
+
+- rpm安装（jdk：在线发布一个springboot项目）
+- 解压缩安装（Tomcat，启动并通过外网访问，发布网站）
+- yum在线安装（docker，直接安装运行跑起来docker）
+
+### JDK安装
+
+1、下载jdk rpm，去oracle官网下载。 
+
+2、安装java环境
+
+~~~shell
+# 检测当前系统是否存在java环境 java -version
+# 如果有的话就需要卸载
+# rpm -qa|grep jdk # 检测jdk版本信息
+# rpm -e --nodeps 查出来的名字
+
+# 卸载完毕后即可安装jdk
+# rpm -ivh rpm包名字
+
+#rpm方式安装jdk不需要配置环境变量
+~~~
+
+~~配置环境变量~~
+
+其他方式安装需要配置，配置方法如下：
+
+~~~shell
+# vim /etc/profile
+JAVA_HOME=/usr/java/[安装的jdk名字]   #可以cd /usr/java 来查看4
+JAVA_HOME=/usr/java/jdk1.8.0_231-amd64
+CLASSPATH=%JAVA_HOME%/lib:%JAVA_HOME%/jre/lib
+PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin
+export PATH CLASSPATH JAVA_HOME
+#退出编辑模式后
+:wq 保存
+~~~
+
+让这个配置文件生效！使用`source /etc/profile`命令
+
+**关于开启防火墙端口**
+
+~~~shell
+# 开启防火墙端口
+firewall-cmd --zone=public --add-port=[要开启的端口号]/tcp --permanent
+firewall-cmd --zone=public --add-port=9000/tcp --permanent
+# 重启防火墙
+systemctl restart firewalld.service
+# 查看所有开启的端口，如果是阿里云，需要配置安全组规则！
+firewall-cmd --list-ports
+~~~
+
+在宝塔面板配置也可以
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
