@@ -1,11 +1,12 @@
 ---
 title: Linux
 date: 2020-04-07
-sidebarDepth: 1
+sidebarDepth: 2
 tags:
 - Linux
 categories:
 - '后端'
+sticky: 1  
 isShowComments: false
 ---
 

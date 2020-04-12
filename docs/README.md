@@ -1,11 +1,11 @@
 ---
 home: true
-bgImage: 'head.jpg'
+bgImage: 'head2.png'
 bgImageStyle: {
   height: '450px'
 }
 hreoText: '开启新世界'
-tagline: 'Hero 副标题'
+# tagline: 'Hero 副标题'
 features:
 - title: 
   details: 把所有的不快给昨天
@@ -21,7 +21,12 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 
 <style>
 .home-blog .hero h1 {
-    color: #2A5B8B !important;
+    color: #020202 !important;
+    padding-right:760px;
+}
+.home-blog .hero p{
+  color: #B43E53 !important;
+    padding-right:730px;
 }
 </style>
 
