@@ -31,15 +31,30 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
       nav: nav,
+      type: 'blog',
+      friendLink: [
+        {
+          title: 'vuepress-theme-reco',
+          desc: 'A simple and beautiful vuepress Blog & Doc theme.',
+          logo: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+          link: 'https://vuepress-theme-reco.recoluan.com'
+        },
+        {
+          title: '午后南杂',
+          desc: 'Enjoy when you can, and endure when you must.',
+          email: 'recoluan@qq.com',
+          link: 'https://www.recoluan.com'
+        },
+      ],
       //导航栏头像
       // logo: '/vuepress/head-fish.jpg',
-      authorAvatar: '/vuepress/head-fish.jpg', //首页右侧头像
+      authorAvatar: '/vuepress/logo-lufei.png', //首页右侧头像
       // 搜索设置
       search: true,
       searchMaxSuggestions: 10,
       // 自动形成侧边导航
-      // sidebar: 'auto',
-      sidebar: sidebar,
+      sidebar: 'auto',
+      // sidebar: sidebar,
       sidebarDepth: 2,
       blogConfig: {
           category: {
@@ -55,7 +70,7 @@ module.exports = {
       lastUpdated: true,
       lastUpdated: '上次更新', // string | boolean
       // 作者
-      author: 'liuwenjie',
+      author: 'xiaoliuya',
       // 备案号
       //record: '京ICP备17067634号-1',
       // 项目开始时间
@@ -89,11 +104,6 @@ module.exports = {
   },
 
   //插件配置
-  // plugins: [
-  //   pluginConf,
-  //   require('./plugins/detailsOpenFlag/index'),
-  //   require('./plugins/musicPlayer/index')
-  // ],
   plugins: pluginConf
   
 

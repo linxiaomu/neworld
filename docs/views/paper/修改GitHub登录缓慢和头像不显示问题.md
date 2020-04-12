@@ -1,7 +1,7 @@
 ---
 title: 修改GitHub登录缓慢和头像不显示问题
 date: 2020-04-10
-sidebarDepth: 1
+sidebar: 'false'
 tags:
 - GitHub
 categories:
@@ -37,5 +37,6 @@ isShowComments: false
 ~~~
 
 注：最好用Notepad++或类似的软件打开。
+
 
 ![](./images/70943883_p2.png)

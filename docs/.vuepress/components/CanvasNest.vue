@@ -23,7 +23,7 @@
         },
         global: {// 是否全局引入
           type: Boolean,
-          default: false
+          default: true
         }
     },
     data() {
