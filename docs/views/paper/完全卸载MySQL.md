@@ -5,7 +5,7 @@ sidebarDepth: 1
 tags:
 - MySQL
 categories:
-- '前端'
+- 软件
 isShowComments: false
 ---
 

@@ -8,7 +8,10 @@
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
     "vuepress": "^1.4.0",
-    "vuepress-plugin-container": "^2.1.2"
+    "vuepress-plugin-container": "^2.1.2",
+    "vuepress-plugin-copyright": "^1.0.2",
+    "vuepress-plugin-one-click-copy": "^1.0.2",
+    "vuepress-plugin-smooth-scroll": "^0.0.9"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",

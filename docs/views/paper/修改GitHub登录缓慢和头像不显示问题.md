@@ -15,7 +15,7 @@ isShowComments: false
 
 在最后加上：
 
-~~~
+~~~ xml
 # GitHub Start 
 192.30.253.112    github.com 
 192.30.253.119    gist.github.com
@@ -40,3 +40,4 @@ isShowComments: false
 
 
 ![](./images/70943883_p2.png)
+

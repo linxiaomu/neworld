@@ -5,7 +5,7 @@ sidebarDepth: 1
 tags:
 - 虚拟机
 categories:
-- '后端'
+- 软件
 isShowComments: false
 ---
 

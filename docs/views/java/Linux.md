@@ -296,7 +296,7 @@ cd是Change Directory的缩写，这是用来变换工作目录的命令。
 
 语法：
 
-~~~shell
+~~~bash
  cd [相对路径或绝对路径]
 ~~~
 
@@ -338,7 +338,7 @@ pwd 是 **Print Working Directory** 的缩写，也就是显示目前所在目�
 
 实例显示出实际的工作目录，而非连结档本身的目录名而已。
 
-```shell
+```bash
 [root@www ~]# cd /var/mail   <==注意，/var/mail是一个连结档
 [root@www mail]# pwd
 /var/mail         <==列出目前的工作目录
@@ -356,7 +356,7 @@ lrwxrwxrwx 1 root root 10 Sep  4 17:54 /var/mail -> spool/mail
 
 语法：
 
-```
+```bash
 mkdir [-mp] 目录名称
 ```
 
@@ -367,7 +367,7 @@ mkdir [-mp] 目录名称
 
 实例：请到/tmp底下尝试创建数个新目录看看：
 
-```shell
+```bash
 [root@www ~]# cd /tmp
 [root@www tmp]# mkdir test    <==创建一名为 test 的新目录
 [root@www tmp]# mkdir test1/test2/test3/test4
@@ -380,7 +380,7 @@ No such file or directory       <== 没办法直接创建此目录啊！
 
 实例：创建权限为 **rwx--x--x** 的目录。
 
-```shell
+```bash
 [root@www tmp]# mkdir -m 711 test2
 [root@www tmp]# ls -l
 drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
@@ -396,7 +396,7 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 
 语法：
 
-```shell
+```bash 
  rmdir [-p] 目录名称
 ```
 
@@ -406,13 +406,13 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 
 删除 runoob 目录
 
-```shell
+```bash
 [root@www tmp]# rmdir runoob/
 ```
 
 将 mkdir 实例中创建的目录(/tmp 底下)删除掉！
 
-```shell
+```bash
 [root@www tmp]# ls -l   <==看看有多少目录存在？
 drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
 drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1 #test1下还有test2/test3/test4
@@ -435,7 +435,7 @@ cp 即拷贝文件和目录。
 
 语法:
 
-```shell
+```bash
 [root@www ~]# cp [-adfilprsu] 来源档(source) 目标档(destination)
 [root@www ~]# cp [options] source1 source2 source3 .... directory
 ```
@@ -454,7 +454,7 @@ cp 即拷贝文件和目录。
 
 用 root 身份，将 root 目录下的 .bashrc 复制到 /tmp 下，并命名为 bashrc
 
-```shell
+```bash
 [root@www ~]# cp ~/.bashrc /tmp/bashrc
 [root@www ~]# cp -i ~/.bashrc /tmp/bashrc
 cp: overwrite `/tmp/bashrc'? n  <==n不覆盖，y为覆盖
@@ -464,7 +464,7 @@ cp: overwrite `/tmp/bashrc'? n  <==n不覆盖，y为覆盖
 
 语法：
 
-```shell
+```bash
  rm [-fir] 文件或目录
 ```
 
@@ -476,14 +476,14 @@ cp: overwrite `/tmp/bashrc'? n  <==n不覆盖，y为覆盖
 
 将刚刚在 cp 的实例中创建的 bashrc 删除掉！
 
-```shell
+```bash
 [root@www tmp]# rm -i bashrc
 rm: remove regular file `bashrc'? y
 ```
 
 如果加上 -i 的选项就会主动询问喔，避免你删除到错误的档名！
 
-~~~shell
+~~~bash
 rm -rf / #系统中所有的文件就被删除，删除跑路就是这么操作的
 ~~~
 
@@ -491,7 +491,7 @@ rm -rf / #系统中所有的文件就被删除，删除跑路就是这么操作�
 
 语法：
 
-```shell
+```bash
 [root@www ~]# mv [-fiu] source destination
 [root@www ~]# mv [options] source1 source2 source3 .... directory
 ```
@@ -504,7 +504,7 @@ rm -rf / #系统中所有的文件就被删除，删除跑路就是这么操作�
 
 复制一文件，创建一目录，将文件移动到目录中
 
-```shell 
+```bash
 [root@www ~]# cd /tmp
 [root@www tmp]# cp ~/.bashrc bashrc
 [root@www tmp]# mkdir mvtest
@@ -515,7 +515,7 @@ rm -rf / #系统中所有的文件就被删除，删除跑路就是这么操作�
 
 将刚刚的目录名称更名为 mvtest2
 
-```shell
+```bash
 [root@www tmp]# mv mvtest mvtest2
 ```
 
@@ -541,7 +541,7 @@ Linux系统中使用以下命令来查看文件的内容：
 
 语法：
 
-```shell
+```bash
 cat [-AbEnTv]
 ```
 
@@ -556,7 +556,7 @@ cat [-AbEnTv]
 
 检看 /etc/issue 这个文件的内容：
 
-```shell
+```bash
 [root@www ~]# cat /etc/issue
 CentOS release 6.4 (Final)
 Kernel \r on an \m
@@ -566,7 +566,7 @@ Kernel \r on an \m
 
 tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：
 
-```shell
+```bash
 [root@www ~]# tac /etc/issue
 
 Kernel \r on an \m
@@ -579,7 +579,7 @@ CentOS release 6.4 (Final)
 
 语法：
 
-```shell
+```bash
 nl [-bnw] 文件
 ```
 
@@ -596,7 +596,7 @@ nl [-bnw] 文件
 
 实例一：用 nl 列出 /etc/issue 的内容
 
-```shell
+```bash
 [root@www ~]# nl /etc/issue
      1  CentOS release 6.4 (Final)
      2  Kernel \r on an \m
@@ -606,7 +606,7 @@ nl [-bnw] 文件
 
 一页一页翻动
 
-```shell
+```bash
 [root@www ~]# more /etc/man_db.config 
 #
 # Generated automatically from man.conf.in by the
@@ -630,7 +630,7 @@ nl [-bnw] 文件
 
 一页一页翻动，以下实例输出/etc/man.config文件的内容：
 
-```shell
+```bash
 [root@www ~]# less /etc/man.config
 #
 # Generated automatically from man.conf.in by the
@@ -658,7 +658,7 @@ less运行时可以输入的命令有：
 
 语法：
 
-```shell
+```bash
 head [-n number] 文件 
 ```
 
@@ -666,13 +666,13 @@ head [-n number] 文件
 
 - -n ：后面接数字，代表显示几行的意思
 
-```shell
+```bash
 [root@www ~]# head /etc/man.config
 ```
 
 默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：
 
-```shell
+```bash
 [root@www ~]# head -n 20 /etc/man.config
 ```
 
@@ -682,7 +682,7 @@ head [-n number] 文件
 
 语法：
 
-```shell
+```bash
 tail [-n number] 文件 
 ```
 
@@ -1060,7 +1060,7 @@ OK! 这样我们就成功创建了一个 runoob.txt 的文件。
 | [Ctrl] + [u]     | 屏幕『向上』移动半页                                         |
 | +                | 光标移动到非空格符的下一行                                   |
 | -                | 光标移动到非空格符的上一行                                   |
-| n<space>         | 那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20<space> 则光标会向后面移动 20 个字符距离。 |
+| 数字+空格        | 例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20+空格 则光标会向后面移动 20 个字符距离。 |
 | 0 或功能键[Home] | 这是数字『 0 』：移动到这一行的最前面字符处 (常用)           |
 | $ 或功能键[End]  | 移动到这一行的最后面字符处(常用)                             |
 | H                | 光标移动到这个屏幕的最上方那一行的第一个字符                 |
@@ -1069,7 +1069,7 @@ OK! 这样我们就成功创建了一个 runoob.txt 的文件。
 | G                | 移动到这个档案的最后一行(常用)                               |
 | nG               | n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu) |
 | gg               | 移动到这个档案的第一行，相当于 1G 啊！ (常用)                |
-| n<Enter>         | n 为数字。光标向下移动 n 行(常用)                            |
+| 数字+确定键      | n 为数字。光标向下移动 n 行(常用)                            |
 
 | 搜索替换                                                     |                                                              |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
