@@ -1948,7 +1948,32 @@ firewall-cmd --list-ports
 
 在宝塔面板配置也可以
 
+---
 
+### Tomcat 安装
+
+ssm war 包就需要放到Tomcat中运行！
+
+1、下载tomcat，官网下载Tomcat9 `apache-tomcat-9.0.34.tar.gz`
+
+2、解压这个文件
+
+~~~bash
+tar -zxvf apache-tomcat-9.0.34.tar.gz
+~~~
+
+![](./images/linux19.png)
+
+3、启动Tomcat测试!     ./xxx.sh  脚本即可
+
+~~~bash
+# 执行  ./startup.sh
+# 停止  ./shotdown.sh
+~~~
+
+---
+
+### Docker （yum安装）
 
 
 
