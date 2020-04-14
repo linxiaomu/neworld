@@ -58,7 +58,7 @@ Docker 轻巧快速。它为基于虚拟机管理程序的虚拟机提供了可�
 
 Docker 官网：[https://www.docker.com](https://www.docker.com/)
 
-Github Docker 源码：https://github.com/docker/docker-ce
+Github Docker 源码：[https://github.com/docker/docker-ce](https://github.com/docker/docker-ce)
 
 Docker Hub 公共仓库：[https://hub.docker.com](https://hub.docker.com/)
 
@@ -104,7 +104,7 @@ Docker 容器通过 Docker 镜像来创建。
 
 ---
 
-## Docker 安装与卸载
+## Docker安装与卸载
 
 ### 在CentOS上安装Docker Engine
 
@@ -153,19 +153,24 @@ $ sudo yum-config-manager \
 
 安装*最新版本*的Docker Engine和容器
 
-```shell
-$ sudo yum install docker-ce docker-ce-cli containerd.io
+```bash
+$ sudo yum -y install docker-ce docker-ce-cli containerd.io
 ```
 
 **启动 Docker**
 
-```shell
+```bash
 $ sudo systemctl start docker
 ```
 
+~~~bash
+ps -ef|grep docker  #查看docker是否启动
+docker version      #查看
+~~~
+
 **通过运行 hello-world 映像来验证是否正确安装了 Docker Engine-Community **
 
-```shell
+```bash
 $ sudo docker run hello-world
 ```
 

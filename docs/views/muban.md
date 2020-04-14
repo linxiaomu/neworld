@@ -2,7 +2,6 @@
 title: 模板
 date: 1996-03-18
 sidebarDepth: 1
-sidebar: 'true'
 tags:
 - JavaScript
 - json
