@@ -1,7 +1,7 @@
 ---
-title: 为什么JDK的RPM包安装方式不需要配置Java环境变量
+title: 为什么的RPM包安装JDK不需要配置Java环境变量
 date: 2020-04-14
-sidebarDepth: 1
+sidebar: 'false'
 tags:
 - rpm
 - java环境变量

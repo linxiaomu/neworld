@@ -2,6 +2,7 @@
 title: 模板
 date: 1996-03-18
 sidebarDepth: 1
+# sidebar: 'false'
 tags:
 - JavaScript
 - json
@@ -9,7 +10,7 @@ categories:
 - '前端'
 keys: 
 - 'e10adc3949ba59abbe56e057f20f883e'
-public: 'true'
+# public: 'true'
 # 置顶
 # sticky: 1     
 isShowComments: false
