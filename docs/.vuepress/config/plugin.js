@@ -31,7 +31,6 @@ module.exports = [
       showInMobile: false // whether to display on the mobile side, default: false.
     }],
     ['vuepress-plugin-smooth-scroll',true],  //平滑滚动
-    ['hero-pattern',true]
     //看板娘
     // ["@vuepress-reco/vuepress-plugin-kan-ban-niang",
     // {
