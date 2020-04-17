@@ -30,7 +30,7 @@ module.exports = [
       duration: 1500, // prompt message display time.
       showInMobile: false // whether to display on the mobile side, default: false.
     }],
-    ['vuepress-plugin-smooth-scroll',true],  //平滑滚动
+    ['vuepress-plugin-smooth-scroll',true] //平滑滚动
     //看板娘
     // ["@vuepress-reco/vuepress-plugin-kan-ban-niang",
     // {
