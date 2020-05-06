@@ -650,9 +650,7 @@ person.dog.name=${person.hello:hello}_dog
 person.dog.age=15
 ```
 
-
-
-### 5、Profile（配置）
+### 5、Profile（多环境配置）
 
 #### 1、多Profile文件
 
@@ -660,24 +658,20 @@ person.dog.age=15
 
 默认使用application.properties的配置；
 
-
-
 #### 2、yml支持多文档块方式
 
 ```yml
-
 server:
   port: 8081
 spring:
   profiles:
-    active: prod
+    active: prod  #选择激活哪个环境
 
 ---
 server:
   port: 8083
 spring:
   profiles: dev
-
 
 ---
 
@@ -686,10 +680,6 @@ server:
 spring:
   profiles: prod  #指定属于哪个环境
 ```
-
-
-
-
 
 #### 3、激活指定profile
 
@@ -704,8 +694,6 @@ spring:
 ​	3、虚拟机参数；
 
 ​		-Dspring.profiles.active=dev
-
-
 
 ### 6、配置文件加载位置
 
@@ -742,8 +730,6 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G
 java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --server.context-path=/abc
 
 多个配置用空格分开； --配置项=值
-
-
 
 2.来自java:comp/env的JNDI属性
 
@@ -1504,8 +1490,6 @@ localhost:8080/webjars/jquery/3.3.1/jquery.js
 		</dependency>
 ```
 
-
-
 ==2）、"/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射==
 
 ```
@@ -1978,6 +1962,12 @@ public class MessageSourceAutoConfiguration {
 		return messageSource;
 	}
 ```
+
+在配置文件中添加：
+
+~~~properties
+spring.message.basename=i18n.你的properties的名字
+~~~
 
 
 
