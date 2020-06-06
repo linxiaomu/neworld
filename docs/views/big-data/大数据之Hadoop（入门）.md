@@ -190,3 +190,78 @@ MapReduce将计算过程分为两个阶段：Map和Reduce
 ### 2.7 推荐系统项目框架
 
 ![](./images/db12.png)
+
+---
+
+## 3、Hadoop运行环境搭建（开发重点）
+
+### 3.1 虚拟机环境准备
+
+1. 克隆虚拟机
+
+2. 修改克隆虚拟机的静态IP
+
+3. 修改主机名
+
+4. 关闭防火墙
+
+5. 创建xiaoliuya用户
+
+6. 配置xiaoliuya用户具有root权限(详见《尚硅谷大数据之Linux》)
+
+7. 在/opt目录下创建文件夹
+
+   （1）在/opt目录下创建module、software文件夹
+
+   ~~~shell
+   [atguigu@hadoop101 opt]$ sudo mkdir module
+   [atguigu@hadoop101 opt]$ sudo mkdir software
+   ~~~
+
+   （2）修改module、software文件夹的所有者cd 
+
+   ~~~shell
+   [atguigu@hadoop101 opt]$ sudo chown atguigu:atguigu module/ software/
+   [atguigu@hadoop101 opt]$ ll
+   ~~~
+
+   ~~~shell
+   总用量 8
+   drwxr-xr-x. 2 atguigu atguigu 4096 1月 17 14:37 module
+   drwxr-xr-x. 2 atguigu atguigu 4096 1月 17 14:38 software
+   ~~~
+
+   
+
+
+
+
+
+### 3.2 安装JDK
+
+
+
+
+
+
+
+
+
+### 3.3 安装Hadoop
+
+
+
+
+
+### 3.4 Hadoop目录结构
+
+
+
+
+
+
+
+
+
+## 4、Hadoop运行模式
+

@@ -30,6 +30,14 @@ CentOS7镜像下载：阿里云站点：[http://mirrors.aliyun.com/centos/7/isos
 
 ![](./images/linux3.png)
 
+怎么判断是否安装成功呢？
+
+![](./images/linux34.png)
+
+还有就是这里：
+
+<img src="./images/linux35.png" style="zoom:60%;" />
+
 ## 3、在虚拟机上安装CentOS7镜像
 
 1、点击上图的创建虚拟机，开始新建
@@ -145,4 +153,128 @@ CentOS7镜像下载：阿里云站点：[http://mirrors.aliyun.com/centos/7/isos
 30、查看ip
 
 <img src="./images/linux33.png" style="zoom:80%;" />
+
+---
+
+## 4、安装VMware Tools
+
+用途：方便在Windows和Linux图形化界面间传输资料！
+
+安装步骤：
+
+在主机上，从 Workstation Pro 菜单栏中选择**虚拟机** > **安装 VMware Tools**。
+
+如果安装了早期版本的 VMware Tools，则菜单项是 **更新 VMware Tools**。
+
+详细安装步骤：[在 Linux 虚拟机中手动安装或升级 VMware Tools](https://docs.vmware.com/cn/VMware-Workstation-Pro/12.0/com.vmware.ws.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html#GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F)
+
+---
+
+## 5、配置联网
+
+### 5.1 联网概述
+
+目的：
+
+1. Windows可以和Linux虚拟机通信
+2. 虚拟机可以和Windows通信
+3. 虚拟机可以访问外网
+
+理论：虚拟机的网卡的配置模式
+
+- 桥接模式：网段相同 真实主机：192.168.1.XXX，虚拟主机：192.168.1.XXX，别人能访问你的虚拟机的
+- NAT模式：虚拟机处于一个独立的网段，物理机位于一个可以上网的子网段！虚拟机通过网关的配置，连接物理机的物理网卡，通过物理机的网卡上网！只有当前的物理机，才能访问虚拟机，别人不可以。
+- 仅主机模式：相似于NAT模式，但不能访问外网
+
+### 5.2 NAT模式联网
+
+1.选择编辑-->虚拟网络编辑器,更改root用户
+
+![](./images/linux36.png)
+
+2.选择NAT模式，设置子网IP与网关IP
+
+![](./images/linux37.png)
+
+**注：如果一切配置完后，不能ping通，就再改一下子网IP的第三位。**
+
+3.CenOS7设置网络
+
+![](./images/linux38.png)
+
+4.如下图，进行下一步
+
+![](./images/linux39.png)
+
+5.点击设置后，如下图进行操作
+
+![](./images/linux40.png)
+
+6.最重要的一步，根据下图进行配置
+
+![](./images/linux41.png)
+
+### 5.3 测试联网
+
+linux查看网卡信息：ifconfig
+
+windows查看网卡信息：ipconfig
+
+1. 虚拟机可以访问外网
+2. 虚拟机可以和Windows通信
+
+![](./images/linux42.png)
+
+​	3.Windows可以和Linux虚拟机通信
+
+![](./images/linux43.png)
+
+### 5.4 虚拟网卡故障
+
+VMware workstations ——编辑——虚拟网络适配器——还原默认设置
+
+重新设置子网网段就可以啦！
+
+## 6、远程连接
+
+**需要安装 Xshell 和 Xftp**，另行介绍安装
+
+1.我们开始远程连接，这是第一步
+
+![](./images/linux44.png)
+
+2.第二步，来进行用户身份的验证，就是填上用户名和密码啦！
+
+![](./images/linux45.png)
+
+3.为了防止出现乱码，看一下编码格式，如果Xftp出现乱码，也要改一下编码格式
+
+![](./images/linux46.png)
+
+现在就远程连接上了，CenOS系统可以调成命令行模式啦！
+
+调节方式：
+
+- 从图形化界面切换到命令行模式：`ctrl+alt+F2`
+- 从命令行模式切换到图形化界面：`ctrl+alt+F1`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
