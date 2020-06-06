@@ -668,7 +668,7 @@ public class Poker {
 
 ## 数据结构
 
-### 2.1 数据结构有什么用？
+### 5.1 数据结构有什么用？
 
 当你用着java里面的容器类很爽的时候，你有没有想过，怎么ArrayList就像一个无限扩充的数组，也好像链表之类的。好用吗？好用，这就是数据结构的用处，只不过你在不知不觉中使用了。
 
@@ -678,7 +678,7 @@ public class Poker {
 
 ![](./images/data02.png)
 
-### 2.2 常见的数据结构
+### 5.2 常见的数据结构
 
 数据存储的常用结构有：栈、队列、数组、链表和红黑树。我们分别来了解一下：
 
@@ -792,7 +792,7 @@ public class Poker {
 
 接下来，我们一起学习Collection中的常用几个子类（`java.util.List`集合、`java.util.Set`集合）。
 
-### 1.1 List接口介绍
+### 6.1 List接口介绍
 
 `java.util.List`接口继承自`Collection`接口，是单列集合的一个重要分支，习惯性地会将实现了`List`接口的对象称为List集合。在List集合中允许出现重复的元素，所有的元素是以一种线性方式进行存储的，在程序中可以通过索引来访问集合中的指定元素。另外，List集合还有一个特点就是元素有序，即元素的存入顺序和取出顺序一致。
 
@@ -806,7 +806,7 @@ List接口特点：
 
 > tips:我们在基础班的时候已经学习过List接口的子类java.util.ArrayList类，该类中的方法都是来自List中定义。
 
-### 1.2 List接口中常用方法
+### 6.2 List接口中常用方法
 
 List作为Collection集合的子接口，不但继承了Collection接口中的全部方法，而且还增加了一些根据元素索引来操作集合的特有方法，如下：
 
@@ -862,13 +862,13 @@ public class ListDemo {
 
 ## List的子类
 
-### 1.1 ArrayList集合
+### 7.1 ArrayList集合
 
 `java.util.ArrayList`集合数据存储的结构是数组结构。元素增删慢，查找快，由于日常开发中使用最多的功能为查询数据、遍历数据，所以`ArrayList`是最常用的集合。
 
 许多程序员开发时非常随意地使用ArrayList完成任何需求，并不严谨，这种用法是不提倡的。
 
-### 1.2 LinkedList集合
+### 7.2 LinkedList集合
 
 `java.util.LinkedList`集合数据存储的结构是链表结构。方便元素添加、删除的集合。
 
@@ -925,7 +925,7 @@ public class LinkedListDemo {
 
 > tips: Set集合取出元素的方式可以采用：迭代器、增强for。
 
-### 1.1 HashSet 集合介绍
+### 8.1 HashSet 集合介绍
 
 `java.util.HashSet`是`Set`接口的一个实现类，它所存储的元素是不可重复的，并且元素都是无序的(即存取顺序不一致)。`java.util.HashSet`底层的实现其实是一个`java.util.HashMap`支持，由于我们暂时还未学习，先做了解。
 
@@ -964,7 +964,7 @@ bac
 
 > tips:根据结果我们发现字符串"cba"只存储了一个，也就是说重复的元素set集合不存储。
 
-### 1.2 HashSet 集合存储数据的结构（哈希表）
+### 8.2 HashSet 集合存储数据的结构（哈希表）
 
 什么是哈希表呢？
 
@@ -984,7 +984,7 @@ bac
 
 ![](./images/set.png)
 
-### 1.3 HashSet存储自定义类型元素
+### 8.3 HashSet存储自定义类型元素
 
 给HashSet中存放自定义类型元素时，需要重写对象中的hashCode和equals方法，建立自己的比较方式，才能保证HashSet集合中的对象唯一
 
@@ -1062,7 +1062,7 @@ Student [name=于谦, age=43]
 Student [name=郭麒麟, age=23]
 ~~~
 
-### 1.4 LinkedHashSet
+### 8.4 LinkedHashSet
 
 我们知道HashSet保证元素唯一，可是元素存放进去是没有顺序的，那么我们要保证有序，怎么办呢？
 
@@ -1094,7 +1094,7 @@ public class LinkedHashSetDemo {
   bbc
 ~~~
 
-### 1.5 可变参数
+### 8.5 可变参数
 
 在**JDK1.5**之后，如果我们定义一个方法需要接受多个参数，并且多个参数类型一致，我们可以对其简化成如下格式：
 
@@ -1160,7 +1160,7 @@ public class ChangeArgs {
 
 ## Collections
 
-### 1.1 常用功能
+### 9.1 常用功能
 
 * `java.utils.Collections`是集合工具类，用来对集合进行操作。部分方法如下：
 
@@ -1197,7 +1197,7 @@ public class CollectionsDemo {
 
 我们发现还有个方法没有讲，`public static <T> void sort(List<T> list，Comparator<? super T> )`:将集合中元素按照指定规则排序。接下来讲解一下指定规则的排列。
 
-### 1.2 Comparator比较器
+### 9.2 Comparator比较器
 
 我们还是先研究这个方法
 
@@ -1277,13 +1277,13 @@ public class CollectionsDemo3 {
 [sba, nba, cba, aba]
 ```
 
-### 1.3 简述Comparable和Comparator两个接口的区别。
+### 9.3 简述Comparable和Comparator两个接口的区别。
 
 **Comparable**：强行对实现它的每个类的对象进行整体排序。这种排序被称为类的自然排序，类的compareTo方法被称为它的自然比较方法。只能在类中实现compareTo()一次，不能经常修改类的代码实现自己想要的排序。实现此接口的对象列表（和数组）可以通过Collections.sort（和Arrays.sort）进行自动排序，对象可以用作有序映射中的键或有序集合中的元素，无需指定比较器。
 
 **Comparator**强行对某个对象进行整体排序。可以将Comparator 传递给sort方法（如Collections.sort或 Arrays.sort），从而允许在排序顺序上实现精确控制。还可以使用Comparator来控制某些数据结构（如有序set或有序映射）的顺序，或者为那些没有自然顺序的对象collection提供排序。
 
-### 1.4  练习
+### 9.4  练习
 
 创建一个学生类，存储到ArrayList集合中完成指定排序操作。
 
@@ -1385,7 +1385,7 @@ Student{name='ace', age=17}
 Student{name='rose', age=18}
 ~~~
 
-### 1.5 扩展
+### 9.5 扩展
 
 如果在使用的时候，想要独立的定义规则去使用 可以采用Collections.sort(List list,Comparetor<T> c)方式，自己定义规则：
 
