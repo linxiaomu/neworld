@@ -258,21 +258,109 @@ VMware workstations ——编辑——虚拟网络适配器——还原默认设
 - 从图形化界面切换到命令行模式：`ctrl+alt+F2`
 - 从命令行模式切换到图形化界面：`ctrl+alt+F1`
 
+---
+
+## 7、克隆虚拟机
+
+1.首先要关闭虚拟机
+
+~~~shell
+halt    #立马关机
+~~~
+
+2.选中要克隆的虚拟机，右击管理---克隆
+
+
+
+3.
 
 
 
 
 
+4.
+
+5.更改虚拟机的当前使用的mac地址
+
+- 开机发现mac地址一样，会自动生成新的mac地址
+
+- 或者虚拟机右击设置，也可生成新的mac地址
+
+- 用命令行来修改
+
+  - ~~~shell
+    vim /etc/udev/rules.d
+    ~~~
+
+  - 
+
+6.更改克隆虚拟机IP地址
+
+1. 用图形化界面更改
+
+2. 用命令行更改
+
+   - ~~~shell
+     
+     ~~~
+
+   - 
 
 
 
+7.修改主机名
 
 
 
+00:0C:29:19:9A:A0	00:02:c9:03:00:31:78:f2
+
+00:0c:29:19:9a:a0 
+
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+**UUID=d74bc861-2794-4d47-a16f-c29b8571da66**
+DEVICE=ens33
+ONBOOT=yes
+IPADDR=192.168.10.11
+PREFIX=24
+GATEWAY=192.168.10.2
+DNS1=192.168.10.2
+**HWADDR=00:0C:29:19:9A:A0**
 
 
 
+00:0C:29:11:AD:31	?*00:02:c9:03:00:31:78:f2"
 
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=d74bc861-2794-4d47-a16f-c29b8571da66
+DEVICE=ens33
+ONBOOT=yes
+IPADDR=192.168.10.11
+PREFIX=24
+GATEWAY=192.168.10.2
+DNS1=192.168.10.2
+HWADDR=00:0C:29:19:9A:A0
 
 
 
