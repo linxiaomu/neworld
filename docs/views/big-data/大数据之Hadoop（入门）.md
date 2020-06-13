@@ -1,3 +1,13 @@
+---
+title: 大数据之Hadoop（入门）
+date: 2020-06-13
+sidebarDepth: 2
+tags:
+- 大数据
+categories:
+- '后端'  
+isShowComments: false
+---
 ## 1、大数据概论
 
 ### 1.1 大数据概念

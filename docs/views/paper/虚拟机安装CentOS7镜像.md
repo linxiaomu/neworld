@@ -270,99 +270,100 @@ halt    #立马关机
 
 2.选中要克隆的虚拟机，右击管理---克隆
 
+![](./images/linux47.png)
+
+3.选中要克隆的虚拟机的状态
+
+![](./images/linux48.png)
 
 
-3.
 
+4.选择克隆类型，一般选择完整克隆虚拟机
 
+![](./images/linux49.png)
 
+5.更改虚拟机的名称和放置虚拟机的位置（一般放在统一目录下，方便管理）
 
+![](./images/linux50.png)
 
-4.
+6.点击关闭，完成基本克隆
 
-5.更改虚拟机的当前使用的mac地址
+![](./images/linux51.png)
 
-- 开机发现mac地址一样，会自动生成新的mac地址
+![](./images/linux52.png)
 
-- 或者虚拟机右击设置，也可生成新的mac地址
+7.更改虚拟机的当前使用的mac地址和IP地址
+
+- 开机发现mac地址一样，会自动生成新的mac地址和IP地址
+
+- 或者虚拟机右击设置，也可生成新的mac地址；图形化界面也可以改变IP地址
+
+- ![](./images/linux53.png)
+
+- ![](./images/linux54.png)
 
 - 用命令行来修改
 
   - ~~~shell
-    vim /etc/udev/rules.d
+    vim /etc/sysconfig/network-scripts/ifcfg-ens33 
     ~~~
 
-  - 
+  - ~~~xml
+    TYPE=Ethernet
+    PROXY_METHOD=none
+    BROWSER_ONLY=no
+    BOOTPROTO=none
+    DEFROUTE=yes
+    IPV4_FAILURE_FATAL=yes
+    IPV6INIT=yes
+    IPV6_AUTOCONF=yes
+    IPV6_DEFROUTE=yes
+    IPV6_FAILURE_FATAL=no
+    IPV6_ADDR_GEN_MODE=stable-privacy
+    NAME=ens33
+    UUID=b38fce9a-149b-442c-a433-e8e6b8471b77
+    DEVICE=ens33
+    ONBOOT=yes
+    IPADDR=192.168.10.12    把上面的更改到这里就好啦
+    PREFIX=24
+    GATEWAY=192.168.10.2
+    DNS1=192.168.10.2
+    IPV6_PRIVACY=no
+    HWADDR=00:0c:29:06:eb:e4	这里也要改啊
+    ~                
+    
+    最后 :wq 保存退出
+    
+    ~~~
 
-6.更改克隆虚拟机IP地址
+8.修改主机名
 
-1. 用图形化界面更改
+![](./images/linux56.png)
 
-2. 用命令行更改
+9.一切修改完之后，执行下面这个命令
 
-   - ~~~shell
-     
-     ~~~
+~~~shell
+[root@localhost ~]# reboot
+~~~
 
-   - 
+10.好啦，克隆都完成啦！看看能不能ping通
 
+![](./images/linux57.png)
 
+## 8、配置主机名的hosts文件映射
 
-7.修改主机名
+Linux：在 /etc/hosts 文件中配合
 
+Windows：在C:\windows\System32\drivers\etc\hosts 文件中配置
 
+~~~shell
+[root@CentOS72020clone ~]# vim /etc/hosts
+~~~
 
-00:0C:29:19:9A:A0	00:02:c9:03:00:31:78:f2
+![](./images/linux58.png)
 
-00:0c:29:19:9a:a0 
+~~~shell
+[root@CentOS72020clone ~]# ping CentOS72020
+~~~
 
-TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=ens33
-**UUID=d74bc861-2794-4d47-a16f-c29b8571da66**
-DEVICE=ens33
-ONBOOT=yes
-IPADDR=192.168.10.11
-PREFIX=24
-GATEWAY=192.168.10.2
-DNS1=192.168.10.2
-**HWADDR=00:0C:29:19:9A:A0**
-
-
-
-00:0C:29:11:AD:31	?*00:02:c9:03:00:31:78:f2"
-
-TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=ens33
-UUID=d74bc861-2794-4d47-a16f-c29b8571da66
-DEVICE=ens33
-ONBOOT=yes
-IPADDR=192.168.10.11
-PREFIX=24
-GATEWAY=192.168.10.2
-DNS1=192.168.10.2
-HWADDR=00:0C:29:19:9A:A0
-
-
-
-
-
+这样通过主机名解析到IP地址就可以连接上啦！
