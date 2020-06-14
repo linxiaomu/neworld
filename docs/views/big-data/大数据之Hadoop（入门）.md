@@ -207,7 +207,7 @@ MapReduce将计算过程分为两个阶段：Map和Reduce
 
 ### 3.1 虚拟机环境准备
 
-1. 克隆虚拟机
+1. 克隆虚拟机[克隆虚拟机详细教程](../paper/虚拟机安装CentOS7镜像.md)
 
 2. 修改克隆虚拟机的静态IP
 
@@ -217,61 +217,219 @@ MapReduce将计算过程分为两个阶段：Map和Reduce
 
 5. 创建xiaoliuya用户
 
+   - ~~~shell
+     [root@CentOS72020clone ~]# adduser xiaoliuya
+     [root@CentOS72020clone ~]# passwd xiaoliuya
+     ~~~
+
+   - ![](./images/db13.png)
+
 6. 配置xiaoliuya用户具有root权限(详见《尚硅谷大数据之Linux》)
+
+   - ~~~shell
+     [root@CentOS72020clone ~]# vim /etc/sudoers
+     ~~~
+
+   - ![](./images/db14.png)
 
 7. 在/opt目录下创建文件夹
 
    （1）在/opt目录下创建module、software文件夹
 
    ~~~shell
-   [atguigu@hadoop101 opt]$ sudo mkdir module
-   [atguigu@hadoop101 opt]$ sudo mkdir software
+   [xiaoliuya@CentOS72020clone opt]$ sudo mkdir module
+   [xiaoliuya@CentOS72020clone opt]$ sudo mkdir software
    ~~~
 
-   （2）修改module、software文件夹的所有者cd 
+   ![](./images/db15.png)
+
+   （2）修改module、software文件夹的所属者和所属组
 
    ~~~shell
-   [atguigu@hadoop101 opt]$ sudo chown atguigu:atguigu module/ software/
-   [atguigu@hadoop101 opt]$ ll
+   [xiaoliuya@CentOS72020clone opt]$ sudo chown -R xiaoliuya:xiaoliuya module/ software/
+   [xiaoliuya@CentOS72020clone opt]$ ll
    ~~~
 
    ~~~shell
-   总用量 8
-   drwxr-xr-x. 2 atguigu atguigu 4096 1月 17 14:37 module
-   drwxr-xr-x. 2 atguigu atguigu 4096 1月 17 14:38 software
+   总用量 0
+   drwxr-xr-x. 2 xiaoliuya xiaoliuya 6 6月  14 13:48 module
+   drwxr-xr-x. 2 root      root      6 10月 31 2018 rh
+   drwxr-xr-x. 2 xiaoliuya xiaoliuya 6 6月  14 13:49 software
    ~~~
 
-   
-
-
+   ~~~shell
+   #可以删除rh目录
+   [xiaoliuya@CentOS72020clone opt]$ sudo rm -rf r/
+   ~~~
 
 
 
 ### 3.2 安装JDK
 
+1.用Xshell和Xftp上传jdk的jar包到opt目录下的software目录下
 
+![](./images/db16.png)
 
+2.解压到opt目录下的module
 
+~~~shell
+[xiaoliuya@CentOS72020clone opt]$ cd software/
+[xiaoliuya@CentOS72020clone software]$ ll
+总用量 190560
+-rw-r--r--. 1 root root 195132576 6月  14 14:55 jdk-8u251-linux-x64.tar.gz
+[xiaoliuya@CentOS72020clone software]$ tar -zxvf jdk-8u251-linux-x64.tar.gz -C /opt/module
+~~~
 
+![](./images/linux17png.png)
 
+3.设置环境变量
 
+~~~shell
+#获取安装路径
+[xiaoliuya@CentOS72020clone jdk1.8.0_251]$ pwd
+/opt/module/jdk1.8.0_251
+#在此文件中设置环境变量
+[xiaoliuya@CentOS72020clone opt]$ sudo vim /etc/profile
+#打开文件后，在末尾添加如下配置
+~~~
 
+~~~properties
+##JAVA_HOME
+export JAVA_HOME=/opt/module/jdk1.8.0_251
+export PATH=$PATH:$JAVA_HOME/bin
+~~~
+
+~~~shell
+#让配置生效
+[xiaoliuya@CentOS72020clone jdk1.8.0_251]$ source /etc/profile
+
+[xiaoliuya@CentOS72020clone jdk1.8.0_251]$ java -version
+java version "1.8.0_251"
+Java(TM) SE Runtime Environment (build 1.8.0_251-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.251-b08, mixed mode)
+
+~~~
+
+~~~shell
+#如果出现的不是你安装的jdk的版本，可能是自带的
+[root@localhost ~]# java -version
+openjdk version "1.8.0_242"   #这不是我安装的1.8.0_251版本
+OpenJDK Runtime Environment (build 1.8.0_242-b08)
+OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)
+~~~
+
+~~~shell
+#用下面这个命令查看有多少jdk相关的
+[root@localhost ~]# rpm -qa | grep jdk
+java-1.7.0-openjdk-headless-1.7.0.251-2.6.21.1.el7.x86_64    #这个删除
+copy-jdk-configs-3.3-10.el7_5.noarch
+java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64			 #这个删除
+java-1.8.0-openjdk-1.8.0.242.b08-1.el7.x86_64				 #这个删除
+java-1.8.0-openjdk-headless-1.8.0.242.b08-1.el7.x86_64		 #这个删除
+
+#使用下面这个命令删除
+rpm -e --nodeps 后面跟系统自带的jdk名 
+[root@localhost ~]# sudo rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.251-2.6.21.1.el7.x86_64
+#然后我们自己安装的就生效啦！
+~~~
 
 ### 3.3 安装Hadoop
 
+1.用Xshell和Xftp上传linux编译过的hadoop jar包到opt目录下的software目录下
 
+![](./images/linux18.png)
 
+2.解压到opt目录下的module
 
+~~~shell 
+[xiaoliuya@CentOS72020clone opt]$ cd software/
+[xiaoliuya@CentOS72020clone software]$ ll
+总用量 383588
+-rw-r--r--. 1 root root 197657687 6月  14 19:08 hadoop-2.7.2.tar.gz
+-rw-r--r--. 1 root root 195132576 6月  14 14:55 jdk-8u251-linux-x64.tar.gz
+[xiaoliuya@CentOS72020clone software]$ tar -zxvf hadoop-2.7.2.tar.gz -C /opt/module/
+~~~
+
+![](./images/linux19.png)
+
+3.设置环境变量
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ pwd
+/opt/module/hadoop-2.7.2
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ sudo vim /etc/profile
+#打开文件后，在末尾添加如下配置
+~~~
+
+~~~shell
+##HADOOP_HOME
+export HADOOP_HOME=/opt/module/hadoop-2.7.2
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+~~~
+
+~~~shell
+#让配置生效
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ source /etc/profile
+
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ hadoop 
+Usage: hadoop [--config confdir] [COMMAND | CLASSNAME]
+  CLASSNAME            run the class named CLASSNAME
+ or
+  where COMMAND is one of:
+  fs                   run a generic filesystem user client
+  version              print the version
+  jar <jar>            run a jar file
+                       note: please use "yarn jar" to launch
+                             YARN applications, not this command.
+  checknative [-a|-h]  check native hadoop and compression libraries availability
+  distcp <srcurl> <desturl> copy file or directories recursively
+  archive -archiveName NAME -p <parent path> <src>* <dest> create a hadoop archive
+  classpath            prints the class path needed to get the
+  credential           interact with credential providers
+                       Hadoop jar and the required libraries
+  daemonlog            get/set the log level for each daemon
+  trace                view and modify Hadoop tracing settings
+
+Most commands print help when invoked w/o parameters.
+
+~~~
 
 ### 3.4 Hadoop目录结构
 
+1.查看Hadoop目录结构
 
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ ll
+总用量 28
+drwxr-xr-x. 2 xiaoliuya xiaoliuya   194 5月  22 2017 bin
+drwxr-xr-x. 3 xiaoliuya xiaoliuya    20 5月  22 2017 etc
+drwxr-xr-x. 2 xiaoliuya xiaoliuya   106 5月  22 2017 include
+drwxr-xr-x. 3 xiaoliuya xiaoliuya    20 5月  22 2017 lib
+drwxr-xr-x. 2 xiaoliuya xiaoliuya   239 5月  22 2017 libexec
+-rw-r--r--. 1 xiaoliuya xiaoliuya 15429 5月  22 2017 LICENSE.txt
+-rw-r--r--. 1 xiaoliuya xiaoliuya   101 5月  22 2017 NOTICE.txt
+-rw-r--r--. 1 xiaoliuya xiaoliuya  1366 5月  22 2017 README.txt
+drwxr-xr-x. 2 xiaoliuya xiaoliuya  4096 5月  22 2017 sbin
+drwxr-xr-x. 4 xiaoliuya xiaoliuya    31 5月  22 2017 share
+~~~
 
+2.重要目录
 
-
-
-
-
+（1）bin目录：存放对Hadoop相关服务（HDFS,YARN）进行操作的脚本
+（2）etc目录：Hadoop的配置文件目录，存放Hadoop的配置文件
+（3）lib目录：存放Hadoop的本地库（对数据进行压缩解压缩功能）
+（4）sbin目录：存放启动或停止Hadoop相关服务的脚本
+（5）share目录：存放Hadoop的依赖jar包、文档、和官方案例
 
 ## 4、Hadoop运行模式
 
+Hadoop运行模式包括：本地模式、伪分布式模式以及完全分布式模式。
+
+Hadoop官方网站：http://hadoop.apache.org/
+
+### 4.1 本地运行模式
+
+#### 4.1.1 官方Grep案例
+
+ 
