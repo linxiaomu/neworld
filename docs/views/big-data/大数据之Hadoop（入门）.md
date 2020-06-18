@@ -215,6 +215,21 @@ MapReduce将计算过程分为两个阶段：Map和Reduce
 
 4. 关闭防火墙
 
+   - 暂时关闭防火墙
+
+   - ~~~shell
+     systemctl stop firewalld
+     ~~~
+
+   - 永久关闭防火墙
+
+   - ~~~shell
+     #先暂时关闭
+     systemctl stop firewalld
+     #再永久关闭，这样就不用重启啦
+     systemctl disable firewalld
+     ~~~
+
 5. 创建xiaoliuya用户
 
    - ~~~shell
@@ -432,4 +447,539 @@ Hadoop官方网站：http://hadoop.apache.org/
 
 #### 4.1.1 官方Grep案例
 
+1. 在hadoop-2.7.2文件下面创建一个input文件夹
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ mkdir input
+~~~
+
+2. 将Hadoop的xml配置文件复制到input
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ cp etc/hadoop/*.xml input
+~~~
+
+3. 执行share目录下的MapReduce程序
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar grep input output 'dfs[a-z]+'
+~~~
+
+4. 查看输出结果
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ cat output/*
+1	dfsadmin
+~~~
+
+#### 4.1.2 官方WordCount案例(统计单词出现的次数)
+
+1. 创建在hadoop-2.7.2文件下面创建一个wcinput文件夹
+
+~~~shell 
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ mkdir wcinput
+~~~
+
+2. 在wcinput文件下创建一个wc.input文件
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ cd wcinput/
+[xiaoliuya@CentOS72020clone wcinput]$ touch wc.input
+~~~
+
+3. 编辑wc.input文件
+
+~~~shell 
+[atguigu@hadoop101 wcinput]$ vim wc.input
+~~~
+
+在文件中输入如下内容
+
+~~~txt
+hadoop yarn
+hadoop mapreduce
+atguigu
+atguigu
+~~~
+
+保存退出：：wq
+
+4. 回到Hadoop目录/opt/module/hadoop-2.7.2
+
+5. 执行程序
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount wcinput wcoutput
+~~~
+
+6. 查看结果
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ cat wcoutput/part-r-00000
+atguigu	2
+hadoop	2
+mapreduce	1
+yarn	1
+~~~
+
+### 4.2 伪分布式运行模式
+
+#### 4.2.1 启动HDFS并运行MapReduce程序
+
+1. 分析
+
+​    （1）配置集群
+
+​    （2）启动、测试集群增、删、查
+
+​    （3）执行WordCount案例
+
+2. 执行步骤
+
+**（1）配置集群**
+
+**配置文件在/opt/module/hadoop-2.7.2/etc/hadoop目录下**
+
+> （a）配置：hadoop-env.sh	
+
+~~~shell
+#Linux系统中获取JDK的安装路径：
+[xiaoliuya@CentOS72020clone ~]$ echo $JAVA_HOME
+/opt/module/jdk1.8.0_251
+~~~
+
+~~~shell
+#修改JAVA_HOME 路径：
+[xiaoliuya@CentOS72020clone hadoop]$ vim hadoop-env.sh
+#修改下面这行
+export JAVA_HOME=/opt/module/jdk1.8.0_251
+~~~
+
+> （b）配置：core-site.xml
+
+~~~xml
+<!-- 指定HDFS中NameNode的地址 -->
+<property>
+<name>fs.defaultFS</name>
+    <value>hdfs://CentOS72020Clone:9000</value>
+</property>
+
+<!-- 指定Hadoop运行时产生文件的存储目录 -->
+<property>
+	<name>hadoop.tmp.dir</name>
+	<value>/opt/module/hadoop-2.7.2/data/tmp</value>
+</property>
+~~~
+
+> （c）配置：hdfs-site.xml
+
+~~~shell
+<!-- 指定HDFS副本的数量 -->
+<property>
+	<name>dfs.replication</name>
+	<value>1</value>
+</property>
+~~~
+
+**（2）启动集群**
+
+> （a）格式化NameNode（第一次启动时格式化，**以后就不要总格式化**）
+
+~~~shell
+[xiaoliuya@CentOS72020clone hadoop-2.7.2]$ bin/hdfs namenode -format
+~~~
+
+> （b）启动NameNode
+
+```shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/hadoop-daemon.sh start namenode
+```
+
+查看namenode是否启动
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ jps
+2257 NameNode
+2333 Jps
+~~~
+
+> （c）启动DataNode
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/hadoop-daemon.sh start datanode
+~~~
+
+查看datanode是否启动
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ jps
+2257 NameNode
+2387 DataNode
+2458 Jps
+~~~
+
+**（3）查看集群**
+
+> （a）查看是否启动成功
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ jps
+2257 NameNode
+2387 DataNode
+2458 Jps
+~~~
+
+13586 NameNode
+
+13668 DataNode
+
+13786 Jps
+
+注意：jps是JDK中的命令，不是Linux命令。不安装JDK不能使用jps
+
+> （b）web端查看HDFS文件系统
+
+http://192.168.10.13:50070/
+
+> （c）查看产生的Log日志
+
+**说明：在企业中遇到Bug时，经常根据日志提示信息去分析问题、解决Bug。**
+
+**当前目录：/opt/module/hadoop-2.7.2/logs**
+
+~~~shell
+[xiaoliuya@CentOS72020Clone logs]$ ls
+hadoop-xiaoliuya-datanode-CentOS72020Clone.log    
+hadoop-xiaoliuya-namenode-CentOS72020Clone.out
+hadoop-xiaoliuya-datanode-CentOS72020Clone.out    
+hadoop-xiaoliuya-namenode-CentOS72020Clone.out.1
+hadoop-xiaoliuya-datanode-CentOS72020Clone.out.1  
+SecurityAuth-xiaoliuya.audit
+hadoop-xiaoliuya-namenode-CentOS72020Clone.log
+~~~
+
+hadoop-atguigu-datanode-hadoop.atguigu.com.log
+
+hadoop-atguigu-datanode-hadoop.atguigu.com.out
+
+hadoop-atguigu-namenode-hadoop.atguigu.com.log
+
+hadoop-atguigu-namenode-hadoop.atguigu.com.out
+
+SecurityAuth-root.audit
+
+> （d）思考：为什么不能一直格式化NameNode，格式化NameNode，要注意什么？
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ cd data/tmp/dfs/name/current/
+[xiaoliuya@CentOS72020Clone current]$ cat VERSION
+clusterID=CID-f0330a58-36fa-4a2a-a65f-2688269b5837
+
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ cd data/tmp/dfs/data/current/
+[xiaoliuya@CentOS72020Clone current]$ cat VERSION
+clusterID=CID-f0330a58-36fa-4a2a-a65f-2688269b5837
+~~~
+
+**注意：格式化NameNode，会产生新的集群id,导致NameNode和DataNode的集群id不一致，集群找不到已往数据。所以，格式NameNode时，一定要先删除data数据和log日志，然后再格式化NameNode。**
+
+**（4）操作集群**
+
+> （a）在HDFS文件系统上创建一个input文件夹
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -mkdir -p /user/xiaoliuya/input
+~~~
+
+> （b）将测试文件内容上传到文件系统上
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$bin/hdfs dfs -put wcinput/wc.input /user/xiaoliuya/input/
+~~~
+
+> （c）查看上传的文件是否正确
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -ls  /user/xiaoliuya/input/
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -cat  /user/xiaoliuya/ input/wc.input
+~~~
+
+> （d）运行MapReduce程序
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hadoop jar
+share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/xiaoliuya/input/ /user/xiaoliuya/output
+~~~
+
+> （e）查看输出结果
+
+命令行查看：
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -cat /user/xiaoliuya/output/*
+#输出结果：
+atguigu	2
+hadoop	2
+mapreduce	1
+yarn	1
+~~~
+
+浏览器查看output文件：
+
+![](./images/db20.png)
+
+> （f）将测试文件内容下载到本地(浏览器下载也可以)
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ hdfs dfs -get /user/xiaoliuya/output/part-r-00000 ./wcoutput/
+~~~
+
+> （g）删除输出结果
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ hdfs dfs -rm -r /user/xiaoliuya/output
+~~~
+
+#### 4.2.2 启动YARN并运行MapReduce程序
+
+1. 分析
+
+​    （1）配置集群在YARN上运行MR
+
+​    （2）启动、测试集群增、删、查
+
+​    （3）在YARN上执行WordCount案例
+
+2. 执行步骤    
+
+**（1）配置集群**
+
+> （a）配置yarn-env.sh
+
+配置一下JAVA_HOME，好像也不需要配置
+
+~~~shell
+export JAVA_HOME=/opt/module/jdk1.8.0_251
+~~~
+
+> （b）配置yarn-site.xml
+
+~~~xml
+<!-- Reducer获取数据的方式 shuffle-->
+<property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffle</value>
+</property>
  
+<!-- 指定YARN的ResourceManager的地址，放在哪个服务器 -->
+<property>
+	<name>yarn.resourcemanager.hostname</name>
+	<value>CentOS72020Clone</value>
+</property>
+~~~
+
+> （c）配置：mapred-env.sh
+
+配置一下JAVA_HOME
+
+~~~shell
+export JAVA_HOME=/opt/module/jdk1.8.0_251
+~~~
+
+> （d）配置： (对mapred-site.xml.template重新命名为) mapred-site.xml
+
+~~~xml
+[xiaoliuya@CentOS72020Clone hadoop]$ mv mapred-site.xml.template mapred-site.xml
+[xiaoliuya@CentOS72020Clone hadoop]$ vim mapred-site.xml
+<!-- 指定MR运行在YARN上 -->
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+~~~
+
+**（2）启动集群**
+
+> （a）启动前必须保证NameNode和DataNode已经启动
+
+> （b）启动ResourceManager
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh start resourcemanager
+~~~
+
+> （c）启动NodeManager
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh start nodemanager
+~~~
+
+**（3）集群操作**
+
+> （a）YARN的浏览器页面查看:http://centos72020clone:8088/cluster
+>
+> ​	或者：http://192.168.10.13:8088/
+
+![](./images/db21.png)
+
+> （b）删除文件系统上的output文件
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -rm -r /user/xiaoliuya/output
+~~~
+
+> （c）执行MapReduce程序
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/xiaoliuya/input /user/xiaoliuya/output
+~~~
+
+> （d）查看运行结果
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -cat /user/atguigu/output/*
+~~~
+
+![](./images/db22.png)
+
+#### 4.2.3 配置历史服务器
+
+为了查看程序的历史运行情况，需要配置一下历史服务器。具体配置步骤如下：
+
+1. 配置mapred-site.xml
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop]$ vim mapred-site.xml
+~~~
+
+在该文件里面增加如下配置
+
+~~~xml
+<!-- 历史服务器端地址 -->
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>CentOS72020Clone:10020</value>
+</property>
+<!-- 历史服务器web端地址 -->
+<property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>CentOS72020Clone:19888</value>
+</property>
+~~~
+
+2. 启动历史服务器
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/mr-jobhistory-daemon.sh start historyserver
+~~~
+
+3. 查看历史服务器是否启动
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ jps
+~~~
+
+4. 查看JobHistory
+
+http://centos72020clone:19888/jobhistory
+
+#### 4.2.4 配置日志的聚集
+
+日志聚集概念：应用运行完成以后，将程序运行日志信息上传到HDFS系统上。
+
+日志聚集功能好处：可以方便的查看到程序运行详情，方便开发调试。
+
+**注意：开启日志聚集功能，需要重新启动NodeManager 、ResourceManager和HistoryManager。**
+
+开启日志聚集功能具体步骤如下：
+
+1. 配置yarn-site.xml
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop]$ vim yarn-site.xml
+~~~
+
+在该文件里面增加如下配置
+
+~~~xml
+<!-- 日志聚集功能使能 -->
+<property>
+<name>yarn.log-aggregation-enable</name>
+<value>true</value>
+</property>
+<!-- 日志保留时间设置7天 -->
+<property>
+<name>yarn.log-aggregation.retain-seconds</name>
+<value>604800</value>
+</property>
+~~~
+
+2. 关闭NodeManager 、ResourceManager和HistoryManager
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh stop resourcemanager
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh stop nodemanager
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/mr-jobhistory-daemon.sh stop historyserver
+~~~
+
+3. 启动NodeManager 、ResourceManager和HistoryManager
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh start resourcemanager
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/yarn-daemon.sh start nodemanager
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ sbin/mr-jobhistory-daemon.sh start historyserver
+~~~
+
+4. 删除HDFS上已经存在的输出文件
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ bin/hdfs dfs -rm -R /user/xiaoliuya/output
+~~~
+
+5. 执行WordCount程序
+
+~~~shell
+[xiaoliuya@CentOS72020Clone hadoop-2.7.2]$ hadoop jar
+ share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/xiaoliuya/input /user/xiaoliuya/output
+~~~
+
+6. 查看日志
+
+http://centos72020clone:19888/jobhistory/logs
+
+![](./images/db23.png)
+
+![](./images/db24.png)
+
+#### 4.2.5 配置文件说明
+
+Hadoop配置文件分两类：默认配置文件和自定义配置文件，只有用户想修改某一默认配置值时，才需要修改自定义配置文件，更改相应属性值。
+
+（1）默认配置文件：
+
+| 要获取的默认文件     | 文件存放在Hadoop的jar包中的位置                             |
+| -------------------- | ----------------------------------------------------------- |
+| [core-default.xml]   | hadoop-common-2.7.2.jar/  core-default.xml                  |
+| [hdfs-default.xml]   | hadoop-hdfs-2.7.2.jar/  hdfs-default.xml                    |
+| [yarn-default.xml]   | hadoop-yarn-common-2.7.2.jar/  yarn-default.xml             |
+| [mapred-default.xml] | hadoop-mapreduce-client-core-2.7.2.jar/  mapred-default.xml |
+
+（2）自定义配置文件：
+
+**core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml**四个配置文件存放在$HADOOP_HOME/etc/hadoop这个路径上，用户可以根据项目需求重新进行修改配置。
+
+### 4.3 完全分布式运行模式（开发重点）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
