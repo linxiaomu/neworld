@@ -969,17 +969,184 @@ Hadoop配置文件分两类：默认配置文件和自定义配置文件，只�
 
 ### 4.3 完全分布式运行模式（开发重点）
 
+分析：
 
+1. 准备3台客户机（关闭防火墙、静态ip、主机名称）
+2. 安装JDK
+3. 配置环境变量
+4. 安装Hadoop
+5. 配置环境变量
+6. 配置集群
+7. 单点启动
+8. 配置ssh
+9. 群起并测试集群
 
+#### 4.3.1 虚拟机准备
 
+​	**详见3.1章**
 
+#### 4.3.2 编写集群分发脚本xsync
 
+##### 1. scp（secure copy）安全拷贝
 
+> scp定义：
 
+scp可以实现服务器与服务器之间的数据拷贝。（from server1 to server2）
 
+> 基本语法：
 
+scp        -r               $pdir/$fname               $user@hadoop$host:$pdir/$fname
 
+命令     递归    要拷贝的文件路径/名称        目的用户@主机:目的路径/名称
 
+> 案例实操：
+>
+
+1. 在hadoop101上，将hadoop101中/opt/module目录下的软件拷贝到hadoop102上。
+
+   - ~~~shell
+     [xiaoliuya@hadoop101 ~]$ scp -r /opt/module/ root@hadoop102:/opt/module/
+     ~~~
+
+2. 在hadoop103上，将hadoop101服务器上的/opt/module目录下的软件拷贝到hadoop103上。
+
+   - ~~~shell
+     [xiaoliuya@hadoop103 ~]$ sudo scp -r xiaoliuya@hadoop101:/opt/module root@hadoop103:/opt/module
+     ~~~
+
+3. 在hadoop103上操作将hadoop101中/opt/module目录下的软件拷贝到hadoop104上。
+
+   - ~~~shell
+     [xiaoliuya@hadoop103 opt]$ scp -r xiaoliuya@hadoop101:/opt/module root@hadoop104:/opt/module
+     ~~~
+
+   - 注意：拷贝过来的/opt/module目录，别忘了在hadoop102、hadoop103、hadoop104上修改所有文件的，所有者和所有者组。
+
+   - ~~~shell
+     sudo chown xiaoliuya:xiaoliuya -R /opt/module
+     ~~~
+
+4. 将hadoop101中/etc/profile文件拷贝到hadoop102的/etc/profile上。
+
+   - ~~~shell
+     [xiaoliuya@hadoop101 ~]$ sudo scp /etc/profile root@hadoop102:/etc/profile
+     ~~~
+
+5. 将hadoop101中/etc/profile文件拷贝到hadoop103的/etc/profile上。
+
+   - ~~~shell
+     [atguigu@hadoop101 ~]$ sudo scp /etc/profile root@hadoop103:/etc/profile
+     ~~~
+
+   - 注意：拷贝过来的配置文件别忘了source一下/etc/profile。
+
+   - ~~~shell 
+     [xiaoliuya@hadoop101 /]$ source /etc/profile
+     ~~~
+
+##### 2. rsync 远程同步工具
+
+rsync主要用于备份和镜像。具有速度快、避免复制相同内容和支持符号链接的优点。
+
+rsync和scp区别：用rsync做文件的复制要比scp的速度快，rsync只对差异文件做更新。scp是把所有文件都复制过去。
+
+> 基本语法：
+>
+
+rsync         -rvl                   $pdir/$fname               $user@hadoop$host:$pdir/$fname
+
+命令      选项参数       要拷贝的文件路径/名称           目的用户@主机:目的路径/名称
+
+选项参数说明：
+
+| 选项 | 功能         |
+| ---- | ------------ |
+| -r   | 递归         |
+| -v   | 显示复制过程 |
+| -l   | 拷贝符号连接 |
+
+> 案例实操：
+
+把hadoop101机器上的/opt/software目录同步到hadoop102服务器的root用户下的/opt/目录
+
+~~~shell
+[xiaoliuya@hadoop101 opt]$ rsync -rvl /opt/software/ root@hadoop102:/opt/software
+~~~
+
+##### 3. xsync集群分发脚本
+
+> 需求：循环复制文件到所有节点的相同目录下
+
+> 需求分析：
+
+1. rsync命令原始拷贝：
+
+   - ~~~shell
+     rsync  -rvl     /opt/module  		 root@hadoop103:/opt/
+     ~~~
+
+2. 期望脚本：
+
+   - xsync要同步的文件名称
+
+3. 说明：在/home/xiaoliuya/bin这个目录下存放的脚本，xiaoliuya用户可以在系统任何地方直接执行。
+
+> 脚本实现:
+
+1. 在/home/xiaoliuya目录下创建bin目录，并在bin目录下xsync创建文件，文件内容如下：
+
+   - ~~~shell
+     [xiaoliuya@hadoop101 ~]$ mkdir bin
+     [xiaoliuya@hadoop101 ~]$ cd bin/
+     [xiaoliuya@hadoop101 bin]$ touch xsync
+     [xiaoliuya@hadoop101 bin]$ vim xsync
+     ~~~
+
+   - 在该文件中编写如下代码：
+
+   - ~~~shell
+     #!/bin/bash
+     #1 获取输入参数个数，如果没有参数，直接退出
+     pcount=$#
+     if((pcount==0)); then
+     echo no args;
+     exit;
+     fi
+     
+     #2 获取文件名称
+     p1=$1
+     fname=`basename $p1`
+     echo fname=$fname
+     
+     #3 获取上级目录到绝对路径
+     pdir=`cd -P $(dirname $p1); pwd`
+     echo pdir=$pdir
+     
+     #4 获取当前用户名称
+     user=`whoami`
+     
+     #5 循环
+     for((host=103; host<105; host++)); do
+             echo ------------------- hadoop$host --------------
+             rsync -rvl $pdir/$fname $user@hadoop$host:$pdir
+     done
+     ~~~
+
+2. 修改脚本 xsync 具有执行权限
+
+   - ~~~shell
+     [xiaoliuya@hadoop101 bin]$ chmod 777 xsync
+     ~~~
+
+3. 调用脚本形式：xsync 文件名称
+
+   - ~~~shell
+     [xiaoliuya@hadoop101 bin]$ xsync /home/xiaoliuya/bin
+     ~~~
+
+   - 注意：如果将xsync放到/home/xiaoliuya/bin目录下仍然不能实现全局使用，可以将xsync移动到/usr/local/bin目录下。
+
+#### 4.3.3 集群配置
 
 
 
