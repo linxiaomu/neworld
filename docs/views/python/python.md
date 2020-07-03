@@ -722,7 +722,7 @@ Python 的字符串常用内建函数如下：
 | 39   | [zfill (width)](https://www.runoob.com/python3/python3-string-zfill.html) 返回长度为 width 的字符串，原字符串右对齐，前面填充0 |
 | 40   | [isdecimal()](https://www.runoob.com/python3/python3-string-isdecimal.html) 检查字符串是否只包含十进制字符，如果是返回 true，否则返回 false。 |
 
-
+---
 
 ### 3.6 List（列表）
 
@@ -733,6 +733,8 @@ List（列表） 是 Python 中使用最频繁的数据类型。
 列表是写在方括号 [] 之间、用逗号分隔开的元素列表。
 
 和字符串一样，列表同样可以被索引和截取，列表被截取后返回一个包含所需元素的新列表。
+
+#### 访问列表中的值
 
 列表截取的语法格式如下：
 
@@ -767,6 +769,8 @@ abcd
 '''
 ~~~
 
+#### 更新列表
+
 与Python字符串不一样的是，列表中的元素是可以改变的：
 
 ~~~python
@@ -779,6 +783,8 @@ abcd
 >>> a
 [9, 2, 6]
 ~~~
+
+**注意：**我们会在接下来的章节讨论append()方法的使用
 
 Python 列表截取可以接收第三个参数，参数作用是截取的步长，以下实例在索引 1 到索引 4 的位置并设置为步长为 2（间隔一个位置）来截取字符串：
 
@@ -814,11 +820,93 @@ if __name__ == "__main__":
     #结果为：runoob like I
 ~~~
 
+#### 删除列表元素
+
+可以使用 del 语句来删除列表的的元素，如下实例：
+
+~~~python 
+#!/usr/bin/python3
+ 
+list = ['Google', 'Runoob', 1997, 2000]
+ 
+print ("原始列表 : ", list)
+del list[2]
+print ("删除第三个元素 : ", list)
+~~~
+
+以上实例输出结果：
+
+```
+原始列表 :  ['Google', 'Runoob', 1997, 2000]
+删除第三个元素 :  ['Google', 'Runoob', 2000]
+```
+
+**注意：**我们会在接下来的章节讨论 remove() 方法的使用
+
+#### 列表脚本操作符
+
+列表对 + 和 * 的操作符与字符串相似。+ 号用于组合列表，* 号用于重复列表。
+
+如下所示：
+
+| Python 表达式                         | 结果                         | 描述                 |
+| :------------------------------------ | :--------------------------- | :------------------- |
+| len([1, 2, 3])                        | 3                            | 长度                 |
+| [1, 2, 3] + [4, 5, 6]                 | [1, 2, 3, 4, 5, 6]           | 组合                 |
+| ['Hi!'] * 4                           | ['Hi!', 'Hi!', 'Hi!', 'Hi!'] | 重复                 |
+| 3 in [1, 2, 3]                        | True                         | 元素是否存在于列表中 |
+| for x in [1, 2, 3]: print(x, end=" ") | 1 2 3                        | 迭代                 |
+
+#### 嵌套列表
+
+使用嵌套列表即在列表里创建其它列表，例如：
+
+~~~python
+>>>a = ['a', 'b', 'c']
+>>> n = [1, 2, 3]
+>>> x = [a, n]
+>>> x
+[['a', 'b', 'c'], [1, 2, 3]]
+>>> x[0]
+['a', 'b', 'c']
+>>> x[0][1]
+'b'
+~~~
+
+Python包含以下函数:
+
+| 序号 | 函数                                                         |
+| :--- | :----------------------------------------------------------- |
+| 1    | [len(list)](https://www.runoob.com/python3/python3-att-list-len.html) 列表元素个数 |
+| 2    | [max(list)](https://www.runoob.com/python3/python3-att-list-max.html) 返回列表元素最大值 |
+| 3    | [min(list)](https://www.runoob.com/python3/python3-att-list-min.html) 返回列表元素最小值 |
+| 4    | [list(seq)](https://www.runoob.com/python3/python3-att-list-list.html) 将元组转换为列表 |
+
+Python包含以下方法:
+
+| 序号 | 方法                                                         |
+| :--- | :----------------------------------------------------------- |
+| 1    | [list.append(obj)](https://www.runoob.com/python3/python3-att-list-append.html) 在列表末尾添加新的对象 |
+| 2    | [list.count(obj)](https://www.runoob.com/python3/python3-att-list-count.html) 统计某个元素在列表中出现的次数 |
+| 3    | [list.extend(seq)](https://www.runoob.com/python3/python3-att-list-extend.html) 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表） |
+| 4    | [list.index(obj)](https://www.runoob.com/python3/python3-att-list-index.html) 从列表中找出某个值第一个匹配项的索引位置 |
+| 5    | [list.insert(index, obj)](https://www.runoob.com/python3/python3-att-list-insert.html) 将对象插入列表 |
+| 6    | [list.pop([index=-1\])](https://www.runoob.com/python3/python3-att-list-pop.html) 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值 |
+| 7    | [list.remove(obj)](https://www.runoob.com/python3/python3-att-list-remove.html) 移除列表中某个值的第一个匹配项 |
+| 8    | [list.reverse()](https://www.runoob.com/python3/python3-att-list-reverse.html) 反向列表中元素 |
+| 9    | [list.sort( key=None, reverse=False)](https://www.runoob.com/python3/python3-att-list-sort.html) 对原列表进行排序 |
+| 10   | [list.clear()](https://www.runoob.com/python3/python3-att-list-clear.html) 清空列表 |
+| 11   | [list.copy()](https://www.runoob.com/python3/python3-att-list-copy.html) 复制列表 |
+
 ### 3.7 Tuple（元组）
 
-元组（tuple）与列表类似，不同之处在于元组的元素不能修改。元组写在小括号 () 里，元素之间用逗号隔开。
+元组（tuple）与列表类似，不同之处在于元组的元素不能修改。
+
+元组写在小括号 () 里，元素之间用逗号隔开。
 
 元组中的元素类型也可以不相同：
+
+#### 元组索引，截取
 
 ~~~python
 #!/usr/bin/python3
@@ -870,7 +958,100 @@ tup1 = ()    # 空元组
 tup2 = (20,) # 一个元素，需要在元素后添加逗号
 ~~~
 
+#### 修改元组
+
+元组中的元素值是不允许修改的，但我们可以对元组进行连接组合，如下实例:
+
+~~~python 
+#!/usr/bin/python3
+ 
+tup1 = (12, 34.56)
+tup2 = ('abc', 'xyz')
+ 
+# 以下修改元组元素操作是非法的。
+# tup1[0] = 100
+ 
+# 创建一个新的元组
+tup3 = tup1 + tup2
+print (tup3)
+~~~
+
+以上实例输出结果：
+
+```
+(12, 34.56, 'abc', 'xyz')
+```
+
+#### 删除元组
+
+元组中的元素值是不允许删除的，但我们可以使用del语句来删除整个元组，如下实例:
+
+~~~python
+#!/usr/bin/python3
+ 
+tup = ('Google', 'Runoob', 1997, 2000)
+ 
+print (tup)
+del tup
+print ("删除后的元组 tup : ")
+print (tup)
+~~~
+
+以上实例元组被删除后，输出变量会有异常信息，输出如下所示：
+
+```python 
+删除后的元组 tup : 
+Traceback (most recent call last):
+  File "test.py", line 8, in <module>
+    print (tup)
+NameError: name 'tup' is not defined
+```
+
+#### 元组运算符
+
+与字符串一样，元组之间可以使用 + 号和 * 号进行运算。这就意味着他们可以组合和复制，运算后会生成一个新的元组。
+
+| Python 表达式                  | 结果                         | 描述         |
+| :----------------------------- | :--------------------------- | :----------- |
+| len((1, 2, 3))                 | 3                            | 计算元素个数 |
+| (1, 2, 3) + (4, 5, 6)          | (1, 2, 3, 4, 5, 6)           | 连接         |
+| ('Hi!',) * 4                   | ('Hi!', 'Hi!', 'Hi!', 'Hi!') | 复制         |
+| 3 in (1, 2, 3)                 | True                         | 元素是否存在 |
+| for x in (1, 2, 3): print (x,) | 1 2 3                        | 迭代         |
+
+#### 元组内置函数
+
+Python元组包含了以下内置函数
+
+| 序号 | 方法及描述                               | 实例                                                         |
+| :--- | :--------------------------------------- | :----------------------------------------------------------- |
+| 1    | len(tuple) 计算元组元素个数。            | `>>> tuple1 = ('Google', 'Runoob', 'Taobao') >>> len(tuple1) 3 >>> ` |
+| 2    | max(tuple) 返回元组中元素最大值。        | `>>> tuple2 = ('5', '4', '8') >>> max(tuple2) '8' >>> `      |
+| 3    | min(tuple) 返回元组中元素最小值。        | `>>> tuple2 = ('5', '4', '8') >>> min(tuple2) '4' >>> `      |
+| 4    | tuple(iterable) 将可迭代系列转换为元组。 | `>>> list1= ['Google', 'Taobao', 'Runoob', 'Baidu'] >>> tuple1=tuple(list1) >>> tuple1 ('Google', 'Taobao', 'Runoob', 'Baidu')` |
+
+#### 关于元组是不可变的
+
+所谓元组的不可变指的是元组所指向的内存中的内容不可变。
+
+~~~python
+>>> tup = ('r', 'u', 'n', 'o', 'o', 'b')
+>>> tup[0] = 'g'     # 不支持修改元素
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> id(tup)     # 查看内存地址
+4440687904
+>>> tup = (1,2,3)
+>>> id(tup)
+4441088800    # 内存地址不一样了
+~~~
+
+从以上实例可以看出，重新赋值的元组 tup，绑定到新的对象了，不是修改了原来的对象。
+
 ### 3.8 Set（集合）
+
+集合（set）是一个无序的不重复元素序列。
 
 集合（set）是由一个或数个形态各异的大小整体组成的，构成集合的事物或对象称作元素或是成员。
 
@@ -926,6 +1107,182 @@ Rose 在集合中
 """
 ~~~
 
+#### 集合的基本操作
+
+**1、添加元素**
+语法格式如下：
+
+~~~python
+s.add( x )
+~~~
+
+将元素 x 添加到集合 s 中，如果元素已存在，则不进行任何操作。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>>thisset.add("Facebook")
+>>>print(thisset)
+{'Taobao', 'Facebook', 'Google', 'Runoob'}
+~~~
+
+还有一个方法，也可以添加元素，且参数可以是列表，元组，字典等，语法格式如下：
+
+~~~python
+s.update( x )
+~~~
+
+x 可以有多个，用逗号分开。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>> thisset.update({1,3})
+>>> print(thisset)
+{1, 3, 'Google', 'Taobao', 'Runoob'}
+>>> thisset.update([1,4],[5,6])  
+>>> print(thisset)
+{1, 3, 4, 5, 6, 'Google', 'Taobao', 'Runoob'}
+>>>
+~~~
+
+**2、移除元素**
+语法格式如下：
+
+~~~python
+s.remove( x )
+~~~
+
+将元素 x 从集合 s 中移除，如果元素不存在，则会发生错误。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>>thisset.remove("Taobao")
+>>>print(thisset)
+{'Google', 'Runoob'}
+>>> thisset.remove("Facebook")   # 不存在会发生错误
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'Facebook'
+>>>
+~~~
+
+此外还有一个方法也是移除集合中的元素，且如果元素不存在，不会发生错误。格式如下所示：
+
+~~~python
+s.discard( x )
+~~~
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>> thisset.discard("Facebook")  # 不存在不会发生错误
+>>> print(thisset)
+{'Taobao', 'Google', 'Runoob'}
+~~~
+
+我们也可以设置随机删除集合中的一个元素，语法格式如下：
+
+~~~python
+s.pop() 
+~~~
+
+~~~python
+thisset = set(("Google", "Runoob", "Taobao", "Facebook"))
+x = thisset.pop()
+ 
+print(x)
+~~~
+
+输出结果：
+
+```python
+$ python3 test.py 
+Runoob
+```
+
+多次执行测试结果都不一样。
+
+set 集合的 pop 方法会对集合进行无序的排列，然后将这个无序排列集合的左面第一个元素进行删除。
+
+**3、计算集合元素个数**
+语法格式如下：
+
+~~~python
+len(s)
+~~~
+
+计算集合 s 元素个数。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>> len(thisset)
+3
+~~~
+
+**4、清空集合**
+语法格式如下：
+
+~~~python
+s.clear()
+~~~
+
+清空集合 s。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>> thisset.clear()
+>>> print(thisset)
+set()
+~~~
+
+**5、判断元素是否在集合中存在**
+语法格式如下：
+
+~~~python
+x in s
+~~~
+
+判断元素 x 是否在集合 s 中，存在返回 True，不存在返回 False。
+
+~~~python
+>>>thisset = set(("Google", "Runoob", "Taobao"))
+>>> "Runoob" in thisset
+True
+>>> "Facebook" in thisset
+False
+>>>
+~~~
+
+#### 集合内置方法完整列表
+
+| 方法                                                         | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [add()](https://www.runoob.com/python3/ref-set-add.html)     | 为集合添加元素                                               |
+| [clear()](https://www.runoob.com/python3/ref-set-clear.html) | 移除集合中的所有元素                                         |
+| [copy()](https://www.runoob.com/python3/ref-set-copy.html)   | 拷贝一个集合                                                 |
+| [difference()](https://www.runoob.com/python3/ref-set-difference.html) | 返回多个集合的差集                                           |
+| [difference_update()](https://www.runoob.com/python3/ref-set-difference_update.html) | 移除集合中的元素，该元素在指定的集合也存在。                 |
+| [discard()](https://www.runoob.com/python3/ref-set-discard.html) | 删除集合中指定的元素                                         |
+| [intersection()](https://www.runoob.com/python3/ref-set-intersection.html) | 返回集合的交集                                               |
+| [intersection_update()](https://www.runoob.com/python3/ref-set-intersection_update.html) | 返回集合的交集。                                             |
+| [isdisjoint()](https://www.runoob.com/python3/ref-set-isdisjoint.html) | 判断两个集合是否包含相同的元素，如果没有返回 True，否则返回 False。 |
+| [issubset()](https://www.runoob.com/python3/ref-set-issubset.html) | 判断指定集合是否为该方法参数集合的子集。                     |
+| [issuperset()](https://www.runoob.com/python3/ref-set-issuperset.html) | 判断该方法的参数集合是否为指定集合的子集                     |
+| [pop()](https://www.runoob.com/python3/ref-set-pop.html)     | 随机移除元素                                                 |
+| [remove()](https://www.runoob.com/python3/ref-set-remove.html) | 移除指定元素                                                 |
+| [symmetric_difference()](https://www.runoob.com/python3/ref-set-symmetric_difference.html) | 返回两个集合中不重复的元素集合。                             |
+| [symmetric_difference_update()](https://www.runoob.com/python3/ref-set-symmetric_difference_update.html) | 移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中。 |
+| [union()](https://www.runoob.com/python3/ref-set-union.html) | 返回两个集合的并集                                           |
+| [update()](https://www.runoob.com/python3/ref-set-update.html) | 给集合添加元素                                               |
+
+
+
+
+
+
+
+
+
+
+
 ### 3.9 Dictionary（字典）
 
 字典（dictionary）是Python中另一个非常有用的内置数据类型。
@@ -937,6 +1294,8 @@ Rose 在集合中
 键(key)必须使用不可变类型。
 
 在同一个字典中，键(key)必须是唯一的。
+
+#### 访问字典里的值
 
 ~~~python
 #!/usr/bin/python3
@@ -984,6 +1343,126 @@ dict_values(['runoob', 1, 'www.runoob.com'])
 - 1、字典是一种映射类型，它的元素是键值对。
 - 2、字典的关键字必须为不可变类型，且不能重复。
 - 3、创建空字典使用 **{ }**。
+
+#### 修改字典
+
+向字典添加新内容的方法是增加新的键/值对，修改或删除已有键/值对如下实例:
+
+~~~python 
+#!/usr/bin/python3
+ 
+dict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+ 
+dict['Age'] = 8               # 更新 Age
+dict['School'] = "菜鸟教程"  # 添加信息
+ 
+ 
+print ("dict['Age']: ", dict['Age'])
+print ("dict['School']: ", dict['School'])
+~~~
+
+以上实例输出结果：
+
+```python 
+dict['Age']:  8
+dict['School']:  菜鸟教程
+```
+
+#### 删除字典元素
+
+能删单一的元素也能清空字典，清空只需一项操作。
+
+显示删除一个字典用del命令，如下实例：
+
+~~~python 
+#!/usr/bin/python3
+ 
+dict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+ 
+del dict['Name'] # 删除键 'Name'
+dict.clear()     # 清空字典
+del dict         # 删除字典
+ 
+print ("dict['Age']: ", dict['Age'])
+print ("dict['School']: ", dict['School'])
+~~~
+
+但这会引发一个异常，因为用执行 del 操作后字典不再存在：
+
+```python
+Traceback (most recent call last):
+  File "test.py", line 9, in <module>
+    print ("dict['Age']: ", dict['Age'])
+TypeError: 'type' object is not subscriptable
+```
+
+#### 字典键的特性 
+
+字典值可以是任何的 python 对象，既可以是标准的对象，也可以是用户定义的，但键不行。
+
+两个重要的点需要记住：
+
+1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住，如下实例：
+
+~~~python
+#!/usr/bin/python3
+ 
+dict = {'Name': 'Runoob', 'Age': 7, 'Name': '小菜鸟'}
+ 
+print ("dict['Name']: ", dict['Name'])
+~~~
+
+以上实例输出结果：
+
+```python
+dict['Name']:  小菜鸟
+```
+
+2）键必须不可变，所以可以用数字，字符串或元组充当，而用列表就不行，如下实例：
+
+~~~python 
+#!/usr/bin/python3
+ 
+dict = {['Name']: 'Runoob', 'Age': 7}
+ 
+print ("dict['Name']: ", dict['Name'])
+~~~
+
+以上实例输出结果：
+
+```python
+Traceback (most recent call last):
+  File "test.py", line 3, in <module>
+    dict = {['Name']: 'Runoob', 'Age': 7}
+TypeError: unhashable type: 'list'
+```
+
+#### 字典内置函数&方法
+
+Python字典包含了以下内置函数：
+
+| 序号 | 函数及描述                                                   | 实例                                                         |
+| :--- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 1    | len(dict) 计算字典元素个数，即键的总数。                     | `>>> dict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'} >>> len(dict) 3` |
+| 2    | str(dict) 输出字典，以可打印的字符串表示。                   | `>>> dict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'} >>> str(dict) "{'Name': 'Runoob', 'Class': 'First', 'Age': 7}"` |
+| 3    | type(variable) 返回输入的变量类型，如果变量是字典就返回字典类型。 | `>>> dict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'} >>> type(dict) <class 'dict'>` |
+
+Python字典包含了以下内置方法：
+
+| 序号 | 函数及描述                                                   |
+| :--- | :----------------------------------------------------------- |
+| 1    | [radiansdict.clear()](https://www.runoob.com/python3/python3-att-dictionary-clear.html) 删除字典内所有元素 |
+| 2    | [radiansdict.copy()](https://www.runoob.com/python3/python3-att-dictionary-copy.html) 返回一个字典的浅复制 |
+| 3    | [radiansdict.fromkeys()](https://www.runoob.com/python3/python3-att-dictionary-fromkeys.html) 创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值 |
+| 4    | [radiansdict.get(key, default=None)](https://www.runoob.com/python3/python3-att-dictionary-get.html) 返回指定键的值，如果值不在字典中返回default值 |
+| 5    | [key in dict](https://www.runoob.com/python3/python3-att-dictionary-in.html) 如果键在字典dict里返回true，否则返回false |
+| 6    | [radiansdict.items()](https://www.runoob.com/python3/python3-att-dictionary-items.html) 以列表返回可遍历的(键, 值) 元组数组 |
+| 7    | [radiansdict.keys()](https://www.runoob.com/python3/python3-att-dictionary-keys.html) 返回一个迭代器，可以使用 list() 来转换为列表 |
+| 8    | [radiansdict.setdefault(key, default=None)](https://www.runoob.com/python3/python3-att-dictionary-setdefault.html) 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default |
+| 9    | [radiansdict.update(dict2)](https://www.runoob.com/python3/python3-att-dictionary-update.html) 把字典dict2的键/值对更新到dict里 |
+| 10   | [radiansdict.values()](https://www.runoob.com/python3/python3-att-dictionary-values.html) 返回一个迭代器，可以使用 list() 来转换为列表 |
+| 11   | [pop(key[,default\])](https://www.runoob.com/python3/python3-att-dictionary-pop.html) 删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。 |
+| 12   | [popitem()](https://www.runoob.com/python3/python3-att-dictionary-popitem.html) 随机返回并删除字典中的最后一对键和值。 |
 
 ### 3.10 Python数据类型转换
 
