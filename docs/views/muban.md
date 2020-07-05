@@ -1,7 +1,7 @@
 ---
 title: 模板
 date: 1996-03-18
-sidebarDepth: 1
+sidebarDepth: 0
 # sidebar: 'false'
 tags:
 - JavaScript

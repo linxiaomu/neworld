@@ -1,3 +1,14 @@
+---
+title: NumPy
+date: 2020-07-01
+sidebarDepth: 0
+tags:
+- Python
+categories:
+- '后端'
+isShowComments: false
+---
+
 ## 1、NumPy 简介
 
 ### 1.1 NumPy 是什么

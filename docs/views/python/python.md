@@ -1,7 +1,7 @@
 ---
 title: Python3
 date: 2020-04-03
-sidebarDepth: 1
+sidebarDepth: 0
 tags:
 - Python
 categories:

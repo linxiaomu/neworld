@@ -55,7 +55,7 @@ module.exports = {
       // 自动形成侧边导航
       sidebar: 'auto',
       // sidebar: sidebar,
-      sidebarDepth: 2,
+      sidebarDepth: 0,
       blogConfig: {
           category: {
               location: 2,     // 在导航栏菜单中所占的位置，默认2
