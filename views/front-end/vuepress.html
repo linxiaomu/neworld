@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>简单安装vuepress | 伟大航路•新世界</title>
+    <meta name="description" content="我颠覆整个世界,只为摆正你倒影。">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/neworld/vuepress/logo-lufei.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <script language="javascript" type="text/javascript" src="https://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="/neworld/js/MouseClickEffect.js"></script>
+    
+    <link rel="preload" href="/neworld/assets/css/0.styles.4e5c866e.css" as="style"><link rel="preload" href="/neworld/assets/js/app.4249b046.js" as="script"><link rel="preload" href="/neworld/assets/js/5.29c4cf69.js" as="script"><link rel="preload" href="/neworld/assets/js/1.c5a9bc6b.js" as="script"><link rel="preload" href="/neworld/assets/js/46.dcbe36d3.js" as="script"><link rel="preload" href="/neworld/assets/js/27.ce9bb42a.js" as="script"><link rel="prefetch" href="/neworld/assets/js/10.d151d1e9.js"><link rel="prefetch" href="/neworld/assets/js/11.336468b8.js"><link rel="prefetch" href="/neworld/assets/js/12.82fe19b7.js"><link rel="prefetch" href="/neworld/assets/js/13.e2bad4ea.js"><link rel="prefetch" href="/neworld/assets/js/14.283adb9b.js"><link rel="prefetch" href="/neworld/assets/js/15.9cff48a0.js"><link rel="prefetch" href="/neworld/assets/js/16.7767f33d.js"><link rel="prefetch" href="/neworld/assets/js/17.b688b0e1.js"><link rel="prefetch" href="/neworld/assets/js/18.40480401.js"><link rel="prefetch" href="/neworld/assets/js/19.3bbb75f0.js"><link rel="prefetch" href="/neworld/assets/js/20.1911979a.js"><link rel="prefetch" href="/neworld/assets/js/21.cb55be8f.js"><link rel="prefetch" href="/neworld/assets/js/22.cc60e379.js"><link rel="prefetch" href="/neworld/assets/js/23.db9b6f53.js"><link rel="prefetch" href="/neworld/assets/js/24.bfb15d35.js"><link rel="prefetch" href="/neworld/assets/js/25.87ae34ea.js"><link rel="prefetch" href="/neworld/assets/js/26.1d368c37.js"><link rel="prefetch" href="/neworld/assets/js/28.1c6e105d.js"><link rel="prefetch" href="/neworld/assets/js/29.a50ee412.js"><link rel="prefetch" href="/neworld/assets/js/30.a373fe0c.js"><link rel="prefetch" href="/neworld/assets/js/31.925d829f.js"><link rel="prefetch" href="/neworld/assets/js/32.bb8f777e.js"><link rel="prefetch" href="/neworld/assets/js/33.66b75f1a.js"><link rel="prefetch" href="/neworld/assets/js/34.b5e158d0.js"><link rel="prefetch" href="/neworld/assets/js/35.e3681afa.js"><link rel="prefetch" href="/neworld/assets/js/36.1347df8a.js"><link rel="prefetch" href="/neworld/assets/js/37.daf1dd56.js"><link rel="prefetch" href="/neworld/assets/js/38.b91e4d53.js"><link rel="prefetch" href="/neworld/assets/js/39.b806be56.js"><link rel="prefetch" href="/neworld/assets/js/4.c9fe4c80.js"><link rel="prefetch" href="/neworld/assets/js/40.c140128a.js"><link rel="prefetch" href="/neworld/assets/js/41.b2537144.js"><link rel="prefetch" href="/neworld/assets/js/42.198f6e66.js"><link rel="prefetch" href="/neworld/assets/js/43.1ec8953f.js"><link rel="prefetch" href="/neworld/assets/js/44.89a68678.js"><link rel="prefetch" href="/neworld/assets/js/45.59eb75d0.js"><link rel="prefetch" href="/neworld/assets/js/47.f8ad6d8e.js"><link rel="prefetch" href="/neworld/assets/js/48.7dacc8a0.js"><link rel="prefetch" href="/neworld/assets/js/49.e8a0b7c7.js"><link rel="prefetch" href="/neworld/assets/js/50.2c33ddc0.js"><link rel="prefetch" href="/neworld/assets/js/51.b43aa5c4.js"><link rel="prefetch" href="/neworld/assets/js/52.c88f56a7.js"><link rel="prefetch" href="/neworld/assets/js/53.ddb1034e.js"><link rel="prefetch" href="/neworld/assets/js/54.05827e7a.js"><link rel="prefetch" href="/neworld/assets/js/55.dfb39d0a.js"><link rel="prefetch" href="/neworld/assets/js/56.fd30ca06.js"><link rel="prefetch" href="/neworld/assets/js/57.61411d99.js"><link rel="prefetch" href="/neworld/assets/js/58.58cddd86.js"><link rel="prefetch" href="/neworld/assets/js/59.0d15ca33.js"><link rel="prefetch" href="/neworld/assets/js/6.abe8fdcd.js"><link rel="prefetch" href="/neworld/assets/js/60.c2f0b5c3.js"><link rel="prefetch" href="/neworld/assets/js/61.8f73797b.js"><link rel="prefetch" href="/neworld/assets/js/62.ad6e0f97.js"><link rel="prefetch" href="/neworld/assets/js/63.5eb8dee0.js"><link rel="prefetch" href="/neworld/assets/js/7.d844bc8b.js"><link rel="prefetch" href="/neworld/assets/js/8.9e029d06.js"><link rel="prefetch" href="/neworld/assets/js/9.52109696.js"><link rel="prefetch" href="/neworld/assets/js/vendors~flowchart.7c77aae5.js">
+    <link rel="stylesheet" href="/neworld/assets/css/0.styles.4e5c866e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div><div class="theme-container" data-v-319dd33c><div data-v-319dd33c><div id="loader-wrapper" class="loading-wrapper" data-v-4b73742e data-v-319dd33c data-v-319dd33c><div class="loader-main" data-v-4b73742e><div data-v-4b73742e></div><div data-v-4b73742e></div><div data-v-4b73742e></div><div data-v-4b73742e></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-1e2a0cc0 data-v-319dd33c data-v-319dd33c><h3 class="title" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0>伟大航路•新世界</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0><input type="password" value="" data-v-1e2a0cc0> <span data-v-1e2a0cc0>Konck! Knock!</span> <button data-v-1e2a0cc0>OK</button></label> <div class="footer" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0><span data-v-1e2a0cc0><i class="iconfont reco-theme" data-v-1e2a0cc0></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-1e2a0cc0>vuePress-theme-reco</a></span> <span data-v-1e2a0cc0><i class="iconfont reco-copyright" data-v-1e2a0cc0></i> <a data-v-1e2a0cc0><span data-v-1e2a0cc0>xiaoliuya</span>
+            
+          <span data-v-1e2a0cc0>2020 - </span>
+          2020
+        </a></span></div></div> <div class="hide" data-v-319dd33c><header class="navbar" data-v-319dd33c><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/neworld/" class="home-link router-link-active"><!----> <span class="site-name">伟大航路•新世界</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/neworld/index.html" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/neworld/categories/后端/" class="nav-link"><i class="iconfont undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/前端/" class="nav-link"><i class="iconfont undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/随笔/" class="nav-link"><i class="iconfont undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/总结/" class="nav-link"><i class="iconfont undefined"></i>
+  总结
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/软件/" class="nav-link"><i class="iconfont undefined"></i>
+  软件
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/积累/" class="nav-link"><i class="iconfont undefined"></i>
+  积累
+</a></li></ul></div></div><div class="nav-item"><a href="/neworld/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-other"></i>
+      打豆豆
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/neworld/views/interLink/前端知识体系汇总.html" class="nav-link"><i class="iconfont undefined"></i>
+  前端外链
+</a></li><li class="dropdown-item"><h4>Group1</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/neworld/language/chinese/" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/neworld/language/japanese/" class="nav-link"><i class="iconfont undefined"></i>
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>Group2</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/neworld/language/chinese/" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/neworld/language/japanese/" class="nav-link"><i class="iconfont undefined"></i>
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/neworld/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><a href="/neworld/about/" class="nav-link"><i class="iconfont reco-message"></i>
+  关于我
+</a></div> <a href="https://github.com/linxiaomu/neworld" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask" data-v-319dd33c></div> <aside class="sidebar" data-v-319dd33c><div class="personal-info-wrapper" data-v-6c8ffc9c><img src="/neworld/vuepress/logo-lufei.png" alt="author-avatar" class="personal-img" data-v-6c8ffc9c> <h3 class="name" data-v-6c8ffc9c>
+    xiaoliuya
+  </h3> <div class="num" data-v-6c8ffc9c><div data-v-6c8ffc9c><h3 data-v-6c8ffc9c>42</h3> <h6 data-v-6c8ffc9c>文章</h6></div> <div data-v-6c8ffc9c><h3 data-v-6c8ffc9c>32</h3> <h6 data-v-6c8ffc9c>标签</h6></div></div> <hr data-v-6c8ffc9c></div> <nav class="nav-links"><div class="nav-item"><a href="/neworld/index.html" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/neworld/categories/后端/" class="nav-link"><i class="iconfont undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/前端/" class="nav-link"><i class="iconfont undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/随笔/" class="nav-link"><i class="iconfont undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/总结/" class="nav-link"><i class="iconfont undefined"></i>
+  总结
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/软件/" class="nav-link"><i class="iconfont undefined"></i>
+  软件
+</a></li><li class="dropdown-item"><!----> <a href="/neworld/categories/积累/" class="nav-link"><i class="iconfont undefined"></i>
+  积累
+</a></li></ul></div></div><div class="nav-item"><a href="/neworld/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-other"></i>
+      打豆豆
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/neworld/views/interLink/前端知识体系汇总.html" class="nav-link"><i class="iconfont undefined"></i>
+  前端外链
+</a></li><li class="dropdown-item"><h4>Group1</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/neworld/language/chinese/" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/neworld/language/japanese/" class="nav-link"><i class="iconfont undefined"></i>
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>Group2</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/neworld/language/chinese/" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/neworld/language/japanese/" class="nav-link"><i class="iconfont undefined"></i>
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/neworld/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><a href="/neworld/about/" class="nav-link"><i class="iconfont reco-message"></i>
+  关于我
+</a></div> <a href="https://github.com/linxiaomu/neworld" target="_blank" rel="noopener noreferrer" class="repo-link"><i class="iconfont reco-github"></i>
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>简单安装vuepress</span> <!----></p> <!----></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-1e2a0cc0 data-v-319dd33c><h3 class="title" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0>简单安装vuepress</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0><input type="password" value="" data-v-1e2a0cc0> <span data-v-1e2a0cc0>Konck! Knock!</span> <button data-v-1e2a0cc0>OK</button></label> <div class="footer" style="display:none;" data-v-1e2a0cc0 data-v-1e2a0cc0><span data-v-1e2a0cc0><i class="iconfont reco-theme" data-v-1e2a0cc0></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-1e2a0cc0>vuePress-theme-reco</a></span> <span data-v-1e2a0cc0><i class="iconfont reco-copyright" data-v-1e2a0cc0></i> <a data-v-1e2a0cc0><span data-v-1e2a0cc0>xiaoliuya</span>
+            
+          <span data-v-1e2a0cc0>2020 - </span>
+          2020
+        </a></span></div></div> <div data-v-319dd33c><main class="page"><div class="page-title" style="display:none;"><h1>简单安装vuepress</h1> <hr> <div data-v-484a899e><i class="iconfont reco-account" data-v-484a899e><span data-v-484a899e>xiaoliuya</span></i> <i class="iconfont reco-date" data-v-484a899e><span data-v-484a899e>2020-04-02</span></i> <i class="iconfont reco-eye" data-v-484a899e><span id="/neworld/views/front-end/vuepress.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-484a899e><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="iconfont reco-tag tags" data-v-484a899e><span class="tag-item" data-v-484a899e>
+      vuepress
+    </span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h3 id="安装初始化"><a href="#安装初始化" class="header-anchor">#</a> 安装初始化</h3> <p>全局安装</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> -g vuepress
+用淘宝源
+cnpm <span class="token function">install</span> -g vuepress
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>创建个文件作为目录</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">1</span>、定位到D盘
+D:
+<span class="token number">2</span>、创建文件
+<span class="token function">mkdir</span> 文件名
+<span class="token number">3</span>、cd到文件
+<span class="token builtin class-name">cd</span> 文件名
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>项目初始化</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">npm</span> init -y
+淘宝源
+cnpm init -y
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>安装淘宝源</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> -g cnpm --registry<span class="token operator">=</span>https://registry.npm.taobao.org
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>在当前项目中创建一个docs</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">mkdir</span> docs
+
+在当前目录下，新建文件夹也行
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>在docs中新建一个Markdown文件（在文件夹中右击新建也可以）</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token builtin class-name">echo</span> <span class="token string">'# Hello VuePress!'</span> <span class="token operator">&gt;</span> README.md
+或
+<span class="token builtin class-name">echo</span> <span class="token string">'# Hello VuePress!'</span> <span class="token operator">&gt;</span> docs/README.md
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>首页内容书写（默认主页提供）</p> <ul><li>同时，站内的每一个文件夹下的 <code>README.md</code> 或者 <code>index.md</code> 文件都会被自动编译为 <code>index.html</code>，对应的链接将被视为 <code>/</code>。</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>---
+home: true
+heroImage: /hero.png
+heroText: Hero 标题
+tagline: Hero 副标题
+actionText: 快速上手 →
+actionLink: /zh/guide/
+features:
+- title: 简洁至上
+  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
+- title: Vue驱动
+  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
+- title: 高性能
+  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+footer: MIT Licensed | Copyright © 2018-present Evan You
+---
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>VuePress 遵循 <strong>“约定优于配置”</strong> 的原则，推荐的目录结构如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.
+├── docs
+│   ├── .vuepress (可选的)
+│   │   ├── components (可选的)
+│   │   ├── theme (可选的)
+│   │   │   └── Layout.vue
+│   │   ├── public (可选的)
+│   │   ├── styles (可选的)
+│   │   │   ├── index.styl
+│   │   │   └── palette.styl
+│   │   ├── templates (可选的, 谨慎配置)
+│   │   │   ├── dev.html
+│   │   │   └── ssr.html
+│   │   ├── config.js (可选的)
+│   │   └── enhanceApp.js (可选的)
+│   │ 
+│   ├── README.md
+│   ├── guide
+│   │   └── README.md
+│   └── config.md
+│ 
+└── package.json
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><ul><li><code>docs/.vuepress</code>: 用于存放全局的配置、组件、静态资源等。</li> <li><code>docs/.vuepress/components</code>: 该目录中的 Vue 组件将会被自动注册为全局组件。</li> <li><code>docs/.vuepress/theme</code>: 用于存放本地主题。</li> <li><code>docs/.vuepress/styles</code>: 用于存放样式相关的文件。</li> <li><code>docs/.vuepress/styles/index.styl</code>: 将会被自动应用的全局样式文件，会生成在最终的 CSS 文件结尾，具有比默认样式更高的优先级。</li> <li><code>docs/.vuepress/styles/palette.styl</code>: 用于重写默认颜色常量，或者设置新的 stylus 颜色常量。</li> <li><code>docs/.vuepress/public</code>: 静态资源目录。</li> <li><code>docs/.vuepress/templates</code>: 存储 HTML 模板文件。</li> <li><code>docs/.vuepress/templates/dev.html</code>: 用于开发环境的 HTML 模板文件。</li> <li><code>docs/.vuepress/templates/ssr.html</code>: 构建时基于 Vue SSR 的 HTML 模板文件。</li> <li><code>docs/.vuepress/config.js</code>: 配置文件的入口文件，也可以是 <code>YML</code> 或 <code>toml</code>。</li> <li><code>docs/.vuepress/enhanceApp.js</code>: 客户端应用的增强。</li></ul> <hr> <p>在docs目录下创建<code>.vuepress</code>目录</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">mkdir</span> .vuepress
+<span class="token comment">#主要存放配置</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>新建总配置文件<code>config.js</code>(或者在文件夹中新建也行)</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> .vuepress
+<span class="token function">touch</span> config.js
+<span class="token comment">#config是整个项目的核心配置文件，所有菜单、栏目相关的配置均配置在该模块中</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>在config.js中加入内容</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token string">'知码学院'</span><span class="token punctuation">,</span>
+    description<span class="token operator">:</span> <span class="token string">'君哥带你上王者'</span><span class="token punctuation">,</span>
+    dest<span class="token operator">:</span> <span class="token string">'./dist'</span><span class="token punctuation">,</span>
+    port<span class="token operator">:</span> <span class="token string">'7777'</span><span class="token punctuation">,</span>
+    head<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span><span class="token string">'link'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>rel<span class="token operator">:</span> <span class="token string">'icon'</span><span class="token punctuation">,</span> href<span class="token operator">:</span> <span class="token string">'/logo.jpg'</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    markdown<span class="token operator">:</span> <span class="token punctuation">{</span>
+        lineNumbers<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    themeConfig<span class="token operator">:</span> <span class="token punctuation">{</span>
+        nav<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+            text<span class="token operator">:</span> <span class="token string">'懵逼指南'</span><span class="token punctuation">,</span> link<span class="token operator">:</span> <span class="token string">'/guide/'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        sidebar<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token string">'/guide/'</span><span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                  title<span class="token operator">:</span><span class="token string">'新手指南'</span><span class="token punctuation">,</span>
+                  collapsable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                  children<span class="token operator">:</span><span class="token punctuation">[</span>
+                    <span class="token string">'/guide/notes/one'</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">]</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span>
+                  title<span class="token operator">:</span><span class="token string">'知码学院'</span><span class="token punctuation">,</span>
+                  collapsable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                  children<span class="token operator">:</span><span class="token punctuation">[</span>
+                    <span class="token string">'/guide/notes/two'</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">]</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        sidebarDepth<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        lastUpdated<span class="token operator">:</span> <span class="token string">'Last Updated'</span><span class="token punctuation">,</span>
+        searchMaxSuggestoins<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        serviceWorker<span class="token operator">:</span> <span class="token punctuation">{</span>
+            updatePopup<span class="token operator">:</span> <span class="token punctuation">{</span>
+                message<span class="token operator">:</span> <span class="token string">&quot;有新的内容.&quot;</span><span class="token punctuation">,</span>
+                buttonText<span class="token operator">:</span> <span class="token string">'更新'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        editLinks<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        editLinkText<span class="token operator">:</span> <span class="token string">'在 GitHub 上编辑此页 ！'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>运行</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>vuepress dev docs
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit" style="display:none;"><div class="edit-link"><a href="https://github.com/linxiaomu/neworld/edit/master/docs/views/front-end/vuepress.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页！</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2020/4/3 下午12:20:33</span></div></footer> <!----></main> <!----> <div style="display:none;" data-v-319dd33c data-v-319dd33c><div class="comments-wrapper" style="display:none;" data-v-319dd33c><div class="valine-wrapper"><div id="valine"></div></div></div></div></div></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-a81d141e data-v-a81d141e><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-a81d141e><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-a81d141e></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-a81d141e></path></svg></div><!----></div></div>
+    <script src="/neworld/assets/js/app.4249b046.js" defer></script><script src="/neworld/assets/js/5.29c4cf69.js" defer></script><script src="/neworld/assets/js/1.c5a9bc6b.js" defer></script><script src="/neworld/assets/js/46.dcbe36d3.js" defer></script><script src="/neworld/assets/js/27.ce9bb42a.js" defer></script>
+  </body>
+</html>
